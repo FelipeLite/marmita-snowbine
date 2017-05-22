@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Configurações de Conexão com o Banco de Dados -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/snowbine-marmita</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+
+		<!-- Pool de Conexões -->
+		<property name="connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+		<!-- Gerenciamento do Contexto das Sessões -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Cache de Segundo Nível -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+		<!-- Mostra as SQLs Geradas -->
+		<property name="show_sql">true</property>
+
+		<!-- Cria as tabelas do banco de dados -->
+		<property name="hbm2ddl.auto">update</property>
+		
+		<!-- Mapeamento das entidades -->
+		<mapping class="br.com.snowbine.entity.Alimento"/>
+		<mapping class="br.com.snowbine.entity.Cidade"/>
+		<mapping class="br.com.snowbine.entity.Cliente"/>
+		<mapping class="br.com.snowbine.entity.Endereco"/>
+		<mapping class="br.com.snowbine.entity.Estado"/>
+		<mapping class="br.com.snowbine.entity.Grupo"/>
+		<mapping class="br.com.snowbine.entity.Marmita"/>
+		<mapping class="br.com.snowbine.entity.Usuario"/>
+		<mapping class="br.com.snowbine.entity.Venda"/>
+	 
+	</session-factory>
+
+</hibernate-configuration>

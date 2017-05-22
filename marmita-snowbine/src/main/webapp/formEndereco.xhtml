@@ -1,0 +1,39 @@
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+   
+  <h:head>
+  	<title>Cadastrar um Endereço</title>
+  </h:head>
+   
+  <h:body>
+       <h:form>
+            <p:messages id="messages"/>
+            <p:panelGrid columns="2">
+                  
+                  <p:outputLabel for="rua" value="Rua:" />
+                  <p:inputText id="rua" value="#{enderecoBean.entidade.rua}" />
+				
+                  <p:outputLabel for="bairro" value="Bairro:" />
+                  <p:inputText id="bairro" value="#{enderecoBean.entidade.bairro}" />
+                  
+                  <p:outputLabel for="cep" value="Cep:" />
+                  <p:inputText id="cep" value="#{enderecoBean.entidade.cep}" />
+                  
+                  <p:outputLabel for="complemento" value="Complemento:" />
+                  <p:inputText id="complemento" value="#{enderecoBean.entidade.complemento}" />
+                  
+                  <h:selectOneMenu id="cidades" value="#{enderecoBean.entidade.cidade}">
+						<f:converter converterId="generic"/>
+						<f:selectItem itemLabel="Selecione uma cidade: " itemValue=""/>
+						<f:selectItems value="#{cidadeBean.listaEntidade}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}"/>
+				  </h:selectOneMenu>
+                  
+                  <p:commandButton  value="Cadastrar" icon="ui-icon-star" action="#{enderecoBean.cadastrar}" update="messages">
+                  </p:commandButton>
+   
+            </p:panelGrid>
+       </h:form>
+  </h:body>
+  </html>

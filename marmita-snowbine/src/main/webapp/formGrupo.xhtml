@@ -1,0 +1,24 @@
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+   
+  <h:head>
+  	<title>Cadastrar um Grupo de Usuario</title>
+  </h:head>
+   
+  <h:body>
+       <h:form>
+            <p:messages id="messages" />
+            <p:panelGrid columns="2">
+                  
+                  <p:outputLabel for="nome" value="Nome:" />
+                  <p:inputText id="nome" value="#{grupoBean.entidade.nome}" />
+                  
+                  <p:commandButton  value="Cadastrar" icon="ui-icon-star" action="#{grupoBean.cadastrar}" update="messages">
+                  </p:commandButton>
+   
+            </p:panelGrid>
+       </h:form>
+  </h:body>
+  </html>

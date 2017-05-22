@@ -1,0 +1,52 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Cadastrar um Usuário</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages id="messages" />
+		<p:panelGrid columns="2">
+			<p:outputLabel for="login" value="Login" />
+			<p:inputText id="login" value="#{usuarioBean.entidade.login}" />
+
+			<p:outputLabel for="senha" value="Senha" />
+			<p:password id="senha" value="#{usuarioBean.entidade.senha}" />
+
+			<h:outputText value="Ativo: " />
+			<p:selectBooleanCheckbox value="#{usuarioBean.entidade.ativo}" />
+
+			<p:outputLabel for="email" value="Email:" />
+			<p:inputText id="email" value="#{usuarioBean.entidade.email}" />
+
+			<p:outputLabel for="grupos" value="Grupo:" />
+			<h:selectOneMenu id="grupos" value="#{usuarioBean.entidade.grupo}">
+				<f:converter converterId="generic" />
+				<f:selectItem itemLabel="Selecione um Grupo: " itemValue="" />
+				<f:selectItems value="#{grupoBean.listaEntidade}" var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
+			</h:selectOneMenu>
+
+			<p:outputLabel for="cliente" value="Cliente:" />
+			<h:selectOneMenu id="cliente" value="#{usuarioBean.entidade.cliente}">
+				<f:converter converterId="generic" />
+				<f:selectItem itemLabel="Selecione um cliente: " itemValue="" />
+				<f:selectItems value="#{clienteBean.listaEntidade}" var="cliente"
+					itemLabel="#{cliente.nome}" itemValue="#{cliente}" />
+			</h:selectOneMenu>
+
+			<p:column>
+				<p:commandButton id="salvar" icon="ui-icon-disk" action="#{usuarioBean.cadastrar}" update="messages"/>
+				<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" action="#{usuarioBean.listagem('Usuario')}" />	
+				
+				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>
+           		<p:tooltip id="toolTipVoltar" for="voltar" value="Retornar a listagem" position="top"/>		
+			</p:column>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

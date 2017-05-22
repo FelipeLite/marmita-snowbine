@@ -1,0 +1,35 @@
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+   
+  <h:head>
+  	<title>Cadastrar um Alimento</title>
+  </h:head>
+   
+  <h:body>
+       <h:form>
+            <p:messages id="messages"/>
+            <p:panelGrid columns="2">
+                  
+                  <p:outputLabel for="categoria" value="Categoria:" />
+					<h:selectOneMenu id="categoria" value="#{alimentoBean.entidade.categoria}">
+						<f:selectItem itemLabel="Selecione uma categoria: " itemValue=""/>
+						<f:selectItem itemLabel="Comida" itemValue="COMIDA"/>
+						<f:selectItem itemLabel="Bebida" itemValue="BEBIDA"/>
+						<f:selectItem itemLabel="Sobremesa" itemValue="SOBREMESA"/>
+					</h:selectOneMenu>
+					
+					<p:outputLabel for="nome" value="Nome:" />
+                  	<p:inputText id="nome" value="#{alimentoBean.entidade.nome}" />
+                  	
+                  	<p:outputLabel for="precoKg" value="Preço Kg:" />
+                  	<p:inputNumber id="precoKg" value="#{alimentoBean.entidade.precoKg}"/>  
+									
+                  <p:commandButton  value="Cadastrar" icon="ui-icon-star" action="#{alimentoBean.cadastrar}" update="messages">
+                  </p:commandButton>
+   
+            </p:panelGrid>
+       </h:form>
+  </h:body>
+  </html>
