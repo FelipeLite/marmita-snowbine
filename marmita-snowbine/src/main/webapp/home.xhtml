@@ -4,16 +4,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 	
 	<h:head>
-		<title>Login SnowBine</title>
+		<title>Home</title>
 	</h:head>
 	
 	<h:body>
-		<h:form id="formLogin">
-			 <h1><h:outputText id="bemVindo" value="Bem vindo(a) ao SnowBine marmitas."/></h1>
-		</h:form>
+		<h3>Bem vindo ao snowbine</h3>
+		<p:outputLabel value="${usuarioBean.usuarioLogado.login}"/>
 	</h:body>
 
 </html>
