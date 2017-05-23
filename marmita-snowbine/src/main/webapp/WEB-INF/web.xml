@@ -30,6 +30,22 @@
     	<welcome-file>index.jsp</welcome-file> 
 	</welcome-file-list>
     
+    <!-- Filter do Login -->
+    <filter>
+    	<filter-name>LoginFilter</filter-name>
+    	<filter-class>br.com.snowbine.base.filter.LoginFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+    	<filter-name>LoginFilter</filter-name>
+    	<url-pattern>/restricted/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- Define o timeout da sessão -->
+    <session-config>
+    	<session-timeout>60</session-timeout>
+    </session-config>
+    
     <!-- Para fins de debug em ambiente dvm, quando for para prd comentar esse bloco -->
     <context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>

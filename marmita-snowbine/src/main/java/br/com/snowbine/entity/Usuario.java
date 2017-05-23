@@ -43,6 +43,9 @@ public class Usuario implements Serializable, BaseEntity
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", nullable = true)
 	private Cliente cliente;
+	
+	@Column(name = "src_imagem_perfil", nullable = false)
+	private String srcImagemPerfil;
 
 	public Integer getId()
 	{
@@ -112,6 +115,16 @@ public class Usuario implements Serializable, BaseEntity
 	public void setCliente(Cliente cliente)
 	{
 		this.cliente = cliente;
+	}
+	
+	public void setSrcImagemPerfil(String srcImagemPerfil)
+	{
+		this.srcImagemPerfil = srcImagemPerfil;
+	}
+	
+	public String getSrcImagemPerfil()
+	{
+		return srcImagemPerfil;
 	}
 
 	public Usuario()

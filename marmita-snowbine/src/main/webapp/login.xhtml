@@ -16,10 +16,10 @@
 		<h:form>
         	<h:panelGrid columns="2" cellpadding="5">
             	<h:outputLabel for="usuario" value="Usuário:" />
-            	<p:inputText id="usuario" value="#{usuarioBean.entidade.login}" required="true" label="usuario" />
+            	<p:inputText id="usuario" value="#{usuarioBean.entidade.login}" required="true" label="usuario" requiredMessage="O campo login é obrigatório!" />
  
 	            <h:outputLabel for="password" value="Password:" />
-    	        <p:password id="password" value="#{usuarioBean.entidade.senha}" required="true" label="senha" />
+    	        <p:password id="password" value="#{usuarioBean.entidade.senha}" required="true" label="senha" requiredMessage="O campo senha é obrigatório!"/>
  
         	    <f:facet name="footer">
             	    <p:commandButton value="Login" action="#{usuarioBean.logar}"/>

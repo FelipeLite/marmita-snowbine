@@ -26,8 +26,6 @@ public class BaseBean<T extends Serializable, D extends GenericDao<T>>
 	@PostConstruct
 	public void init()
 	{
-		System.out.println("DENTRO D POS CONTRUCT BEIBE");
-		
 		// Encontra a classe
 		classeEntidade = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		classeDao = (Class<D>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];

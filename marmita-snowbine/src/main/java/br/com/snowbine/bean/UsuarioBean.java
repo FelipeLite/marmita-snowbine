@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import br.com.snowbine.base.bean.BaseBean;
+import br.com.snowbine.base.session.SessionContext;
 import br.com.snowbine.dao.UsuarioDao;
 import br.com.snowbine.entity.Usuario;
 import br.com.snowbine.util.StringUtils;
@@ -15,6 +16,13 @@ import br.com.snowbine.util.StringUtils;
 public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Serializable
 {
 	private static final long serialVersionUID = -1357026317790380693L;
+	
+	public Usuario usuarioLogado = null;
+	
+	public Usuario getUsuarioLogado()
+	{
+		return this.usuarioLogado;
+	}
 	
 	//Criptografa a senha
 	@Override
@@ -27,13 +35,39 @@ public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Seriali
 	
 	public String logar()
 	{
-		System.out.println("[Login e verificação]");
+		System.out.println("[Login e verificação]");	
 		if(!this.validarLoginSenha())
 		{
 			return null;
 		}
 		
+		else
+		{
+			try
+			{
+				System.out.println("[Realizando o login] " + usuarioLogado.getCliente().getNome());
+				
+				SessionContext.getInstance().setAttribute("usuarioLogado", usuarioLogado);
+				
+				return "/home.xhtml?faces-redirect=true";
+			} 
+			
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
 		return null;
+	}
+	
+	public String logOut()
+	{
+		System.out.println("[Fazendo logoff] " + usuarioLogado.getLogin());
+		
+		SessionContext.getInstance().encerrarSessao();
+		
+		return "/security/login.xhtml?faces-redirect=true";
 	}
 	
 	private boolean validarLoginSenha()
@@ -57,7 +91,7 @@ public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Seriali
 			else
 			{
 				//Encontra o usuario e compara a senha
-				Usuario usuarioEncontrado = this.getDao().consultarPorParametros("login =" + login).get(0);
+				Usuario usuarioEncontrado = this.getDao().consultarPorParametros("t.login = '" + login + "'").get(0);
 				
 				if(!StringUtils.criptografarSenha(senha).equals(usuarioEncontrado.getSenha()))
 				{
@@ -65,9 +99,14 @@ public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Seriali
 					
 					return false;
 				}
+				
+				else
+				{
+					// Define o usuario logado da sessão
+					this.usuarioLogado = usuarioEncontrado;
+				}
 			}
-			
-			System.out.println("login e senha ok");
+
 			return true;
 		} 
 		
