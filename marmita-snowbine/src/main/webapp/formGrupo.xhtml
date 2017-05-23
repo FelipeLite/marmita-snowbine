@@ -15,8 +15,13 @@
                   <p:outputLabel for="nome" value="Nome:" />
                   <p:inputText id="nome" value="#{grupoBean.entidade.nome}" />
                   
-                  <p:commandButton  value="Cadastrar" icon="ui-icon-star" action="#{grupoBean.cadastrar}" update="messages">
-                  </p:commandButton>
+                  <p:column>
+            		<p:commandButton id="salvar" icon="ui-icon-disk" action="#{grupoBean.cadastrar}" update="messages"/>
+           			<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" action="#{grupoBean.listagem('Grupo')}" />
+           			
+           			<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>
+           			<p:tooltip id="toolTipVoltar" for="voltar" value="Retornar a listagem" position="top"/>
+            	  </p:column>
    
             </p:panelGrid>
        </h:form>

@@ -44,7 +44,7 @@ public class Usuario implements Serializable, BaseEntity
 	@JoinColumn(name = "id_cliente", nullable = true)
 	private Cliente cliente;
 	
-	@Column(name = "src_imagem_perfil", nullable = false)
+	@Column(name = "src_imagem_perfil", nullable = true)
 	private String srcImagemPerfil;
 
 	public Integer getId()

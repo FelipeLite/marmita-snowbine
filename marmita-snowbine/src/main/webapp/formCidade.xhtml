@@ -21,8 +21,13 @@
 						<f:selectItems value="#{estadoBean.listaEntidade}" var="estado" itemLabel="#{estado.nome}" itemValue="#{estado}"/>
 					</h:selectOneMenu>
 					
-                  <p:commandButton  value="Cadastrar" icon="ui-icon-star" action="#{cidadeBean.cadastrar}" update="messages">
-                  </p:commandButton>
+                  <p:column>
+            		<p:commandButton id="salvar" icon="ui-icon-disk" action="#{cidadeBean.cadastrar}" update="messages"/>
+           			<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" action="#{cidadeBean.listagem('Cidade')}" />
+           			
+           			<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>
+           			<p:tooltip id="toolTipVoltar" for="voltar" value="Retornar a listagem" position="top"/>
+            	  </p:column>
    
             </p:panelGrid>
        </h:form>

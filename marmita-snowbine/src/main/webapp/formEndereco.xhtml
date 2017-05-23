@@ -30,8 +30,13 @@
 						<f:selectItems value="#{cidadeBean.listaEntidade}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}"/>
 				  </h:selectOneMenu>
                   
-                  <p:commandButton  value="Cadastrar" icon="ui-icon-star" action="#{enderecoBean.cadastrar}" update="messages">
-                  </p:commandButton>
+                  <p:column>
+            		<p:commandButton id="salvar" icon="ui-icon-disk" action="#{enderecoBean.cadastrar}" update="messages"/>
+           			<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" action="#{enderecoBean.listagem('Endereco')}" />
+           			
+           			<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>
+           			<p:tooltip id="toolTipVoltar" for="voltar" value="Retornar a listagem" position="top"/>
+            	  </p:column>
    
             </p:panelGrid>
        </h:form>

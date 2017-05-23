@@ -9,19 +9,19 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form id="form" enctype="multipart/form-data">
 		<p:messages id="messages" />
 		<p:panelGrid columns="2">
-			<p:outputLabel for="login" value="Login" />
+			<p:outputLabel for="login" value="Login"/>
 			<p:inputText id="login" value="#{usuarioBean.entidade.login}" />
 
-			<p:outputLabel for="senha" value="Senha" />
+			<p:outputLabel for="senha" value="Senha"/>
 			<p:password id="senha" value="#{usuarioBean.entidade.senha}" />
 
 			<h:outputText value="Ativo: " />
 			<p:selectBooleanCheckbox value="#{usuarioBean.entidade.ativo}" />
 
-			<p:outputLabel for="email" value="Email:" />
+			<p:outputLabel for="email" value="Email:"/>
 			<p:inputText id="email" value="#{usuarioBean.entidade.email}" />
 
 			<p:outputLabel for="grupos" value="Grupo:" />
@@ -31,16 +31,24 @@
 				<f:selectItems value="#{grupoBean.listaEntidade}" var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
 			</h:selectOneMenu>
 
-			<p:outputLabel for="cliente" value="Cliente:" />
+			<p:outputLabel for="cliente" value="Cliente:"/>
 			<h:selectOneMenu id="cliente" value="#{usuarioBean.entidade.cliente}">
 				<f:converter converterId="generic" />
 				<f:selectItem itemLabel="Selecione um cliente: " itemValue="" />
 				<f:selectItems value="#{clienteBean.listaEntidade}" var="cliente"
 					itemLabel="#{cliente.nome}" itemValue="#{cliente}" />
 			</h:selectOneMenu>
-
+			
+			<p:outputLabel for="imagem-perfil" value="Imagem de perfil:"/>
+			<h:inputFile id="imagem-perfil" value="#{usuarioBean.imagemPerfil}">
+				<f:passThroughAttribute name="accept" value="image/jpeg"/>
+			</h:inputFile>
 			<p:column>
-				<p:commandButton id="salvar" icon="ui-icon-disk" action="#{usuarioBean.cadastrar}" update="messages"/>
+			
+				<h:commandButton id="salvar" icon="ui-icon-disk" action="#{usuarioBean.cadastrar}" update="messages">
+					<f:ajax execute="@form"/>
+				</h:commandButton>
+				
 				<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" action="#{usuarioBean.listagem('Usuario')}" />	
 				
 				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>

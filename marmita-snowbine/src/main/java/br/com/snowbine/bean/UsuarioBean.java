@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.Part;
 
 import br.com.snowbine.base.bean.BaseBean;
 import br.com.snowbine.base.session.SessionContext;
 import br.com.snowbine.dao.UsuarioDao;
 import br.com.snowbine.entity.Usuario;
 import br.com.snowbine.util.StringUtils;
+import br.com.snowbine.util.UploadUtils;
 
 @ManagedBean
 @SessionScoped
@@ -18,10 +20,21 @@ public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Seriali
 	private static final long serialVersionUID = -1357026317790380693L;
 	
 	public Usuario usuarioLogado = null;
+	public Part imagemPerfil = null;
 	
 	public Usuario getUsuarioLogado()
 	{
 		return this.usuarioLogado;
+	}
+	
+	public Part getImagemPerfil()
+	{
+		return this.imagemPerfil;
+	}
+	
+	public void setImagemPerfil(Part imagemPerfil)
+	{
+		this.imagemPerfil = imagemPerfil;
 	}
 	
 	//Criptografa a senha
@@ -30,6 +43,11 @@ public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Seriali
 	{
 		this.getEntidade().setSenha(StringUtils.criptografarSenha(this.getEntidade().getSenha()));
 		
+		if(imagemPerfil != null)
+		{
+			this.getEntidade().setSrcImagemPerfil(UploadUtils.uploadImage(imagemPerfil));
+		}
+
 		return super.cadastrar();
 	}
 	

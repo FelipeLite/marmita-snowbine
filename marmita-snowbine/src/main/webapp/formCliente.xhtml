@@ -38,17 +38,21 @@
                   
                  <p:outputLabel for="complemento" value="Complemento:" />
                  <p:inputText id="complemento" value="#{enderecoBean.entidade.complemento}" />
-                  
+                 
+                 <p:outputLabel for="complemento" value="Cidade:" /> 
                  <h:selectOneMenu id="cidades" value="#{enderecoBean.entidade.cidade}">
 					<f:converter converterId="generic"/>
-					<f:selectItem itemLabel="Selecione uma cidade: " itemValue=""/>
+					<f:selectItem itemLabel="Selecione: " itemValue=""/>
 					<f:selectItems value="#{cidadeBean.listaEntidade}" var="cidade" itemLabel="#{cidade.nome}" itemValue="#{cidade}"/>
 				 </h:selectOneMenu>
 					
-                  <h:commandLink value="cadastrar" action="#{clienteBean.cadastrar}">
-                  	 <f:actionListener binding="#{enderecoBean.action()}"/>
-   					 <f:setPropertyActionListener target="#{clienteBean.entidade.endereco}" value="#{enderecoBean.entidade}" />
-				</h:commandLink>
+                 <p:column>
+            		<p:commandButton id="salvar" icon="ui-icon-disk" action="#{clienteBean.cadastrar}" update="messages"/>
+           			<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" action="#{clienteBean.listagem('Cliente')}" />
+           			
+           			<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>
+           			<p:tooltip id="toolTipVoltar" for="voltar" value="Retornar a listagem" position="top"/>
+            	  </p:column>
    
             </p:panelGrid>
        </h:form>
