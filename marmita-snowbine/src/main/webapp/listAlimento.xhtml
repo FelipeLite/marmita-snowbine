@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <title>Lista de Alimentos</title>
+  </h:head>
+  <h:body>
+  	<p:dataTable var="alimentos" value="#{alimentoBean.listaEntidade}" paginator="true" rows="15">
+		<p:column headerText="Nome" sortBy="#{alimentos.nome}">
+    		<h:outputText value="#{alimentos.nome}"/>
+  		</p:column>    
+  		<p:column headerText="Categoria" sortBy="#{alimentos.categoria}">
+    		<h:outputText value="#{alimentos.categoria}"/>
+  		</p:column>
+  		<p:column headerText="Preço/KG" sortBy="#{alimentos.preco_kg}">
+    		<h:outputText value="#{alimentos.preco_kg}"/>
+  		</p:column>    
+  		<p:column headerText="Ações">
+			<h:form>
+				<p:commandButton icon="ui-icon-pencil" action="#{alimentoBean.editar(alimentos.id,'Alimento')}"/>
+				<p:commandButton icon="ui-icon-trash" action="#{alimentoBean.excluir(alimentos.id,'Alimento')}"/>
+			</h:form>
+  		</p:column>    
+  		
+	</p:dataTable>
+  </h:body>
+</html>
