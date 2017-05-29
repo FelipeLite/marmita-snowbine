@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/template/template.xhtml">
+
+  <ui:define name="metadata">
+	</ui:define>
+	
+	<ui:define name="content">
+	 	<p:dataTable var="clientes" value="#{clienteBean.listaEntidade}" paginator="true" rows="15">
+			<p:column headerText="Nome" value="#{clientes.nome}">
+		 		<h:outputText value="#{clientes.nome}"/>
+		 	</p:column>
+			<p:column headerText="Sobrenome" sortBy="#{clientes.sobrenome}">
+		   		<h:outputText value="#{clientes.sobrenome}"/>
+		 	</p:column>    
+		 	<p:column headerText="Idade" value="#{clientes.idade}">
+		 		<h:outputText value="#{clientes.idade}"/>
+		 	</p:column>   
+		 	<p:column headerText="CPF" value="#{clientes.cpf}">
+		 		<h:outputText value="#{clientes.cpf}"/>
+		 	</p:column>
+		 	<p:column headerText="RG" value="#{clientes.rg}">
+		 		<h:outputText value="#{clientes.rg}"/>
+		 	</p:column>
+		 	<p:column headerText="Ações">
+				<p:commandButton icon="ui-icon-pencil" actionListener="#{clientModal.openDialog('Cliente', clientes.id)}"/>
+				<p:commandButton icon="ui-icon-trash" actionListener="#{clienteBean.excluir(clientes,'Cliente')}"/>
+		 	</p:column>    
+		</p:dataTable>
+	</ui:define>
+</ui:composition>

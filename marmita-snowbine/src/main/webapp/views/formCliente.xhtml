@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/template/template.xhtml">
+	
+	<ui:define name="metadata">
+	</ui:define>
+
+	<ui:define name="content">
+	 	<p:messages id="msgs" />
+	 		
+		<p:panelGrid columns="2" style="width=100%;" id ="panel">
+			 <f:facet name="header">
+        		<h3><p:outputLabel value="Cadastro de Clientes"/></h3>
+    		</f:facet>
+    		
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" value="#{clienteBean.entidade.nome}" required="true" requiredMessage="Nome é obrigatório">
+				<f:validateLength minimum="2" maximum="50"/>
+			</p:inputText>
+			
+			<p:outputLabel for="sobrenome" value="Sobrenome:" />
+			<p:inputText id="sobrenome" value="#{clienteBean.entidade.sobrenome}" required="true" requiredMessage="Sobrenome é obrigatório">
+				<f:validateLength minimum="2" maximum="50"/>
+			</p:inputText>
+			
+			<p:outputLabel for="idade" value="Idade" />
+			<p:inputNumber id="idade" value="#{clienteBean.entidade.idade}" required="true" requiredMessage="Idade é obrigatória" decimalPlaces="0" maxlength="110"/>
+
+			<p:outputLabel for="cpf" value="Cpf:" />
+			<p:inputMask mask="999.999.999-99" id="cpf"	value="#{clienteBean.entidade.cpf}" required="true" requiredMessage="Cpf é obrigatório"/>
+
+			<p:outputLabel for="rg" value="Rg:" />
+			<p:inputText id="rg" value="#{clienteBean.entidade.rg}" required="true" requiredMessage="RG é obrigatório" maxlength="10"/>
+
+			<p:outputLabel for="rua" value="Rua:"/>
+			<p:inputText id="rua" value="#{clienteBean.endereco.rua}" required="true" requiredMessage="Rua é obrigatório"/>
+
+			<p:outputLabel for="bairro" value="Bairro:" />
+			<p:inputText id="bairro" value="#{clienteBean.endereco.bairro}" required = "true" requiredMessage="Bairro é obrigatório"/>
+
+			<p:outputLabel for="cep" value="Cep:" />
+			<p:inputMask mask="99.999-999" id="cep" value="#{clienteBean.endereco.cep}" required="true" requiredMessage="Cep é obrigatório" />
+
+			<p:outputLabel for="complemento" value="Complemento:" />
+			<p:inputText id="complemento" value="#{clienteBean.endereco.complemento}"/>
+
+			<p:outputLabel for="cidades" value="Cidade:" />
+			<p:selectOneMenu id="cidades" value="#{clienteBean.endereco.cidade}" required="true" requiredMessage="Escolha uma cidade!">
+				<f:converter converterId="generic" />
+				<f:selectItem itemLabel="Selecione: " itemValue="" />
+				<f:selectItems value="#{cidadeBean.listaEntidade}" var="cidade"
+					itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
+			</p:selectOneMenu>
+
+			<p:column>
+				<p:commandButton id="salvar" icon="ui-icon-disk" actionListener="#{clienteBean.cadastrarCliente}" update="panel"/>
+				
+				<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w"
+					action="#{clienteBean.listagem('Cliente')}" />
+
+				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar"
+					position="top" />
+				<p:tooltip id="toolTipVoltar" for="voltar"
+					value="Retornar a listagem" position="top" />
+			</p:column>
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>
