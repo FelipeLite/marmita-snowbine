@@ -1,8 +1,8 @@
 package br.com.test.dao;
 
-import br.com.snowbine.dao.CidadeDao;
-import br.com.snowbine.dao.EstadoDao;
-import br.com.snowbine.entity.Cidade;
+import br.com.snowbine.sistema.dao.CidadeDao;
+import br.com.snowbine.sistema.dao.EstadoDao;
+import br.com.snowbine.sistema.entity.Cidade;
 
 public class TestPersistenceDao
 {

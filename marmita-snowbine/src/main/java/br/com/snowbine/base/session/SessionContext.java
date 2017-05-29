@@ -3,7 +3,7 @@ package br.com.snowbine.base.session;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import br.com.snowbine.entity.Usuario;
+import br.com.snowbine.sistema.entity.Usuario;
 
 public class SessionContext
 {

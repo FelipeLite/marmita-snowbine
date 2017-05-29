@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.snowbine.entity.Usuario;
+import br.com.snowbine.sistema.entity.Usuario;
 
 public class LoginFilter implements Filter
 {

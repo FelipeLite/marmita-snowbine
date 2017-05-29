@@ -12,8 +12,8 @@ import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import br.com.snowbine.persistence.PersistenceUtils;
-import br.com.snowbine.util.HibernateUtils;
+import br.com.snowbine.sistema.persistence.PersistenceUtils;
+import br.com.snowbine.sistema.util.HibernateUtils;
 
 public class GenericDao<T extends Serializable>
 {

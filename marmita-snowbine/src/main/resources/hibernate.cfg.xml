@@ -32,15 +32,15 @@
 		<property name="hbm2ddl.auto">update</property>
 		
 		<!-- Mapeamento das entidades -->
-		<mapping class="br.com.snowbine.entity.Alimento"/>
-		<mapping class="br.com.snowbine.entity.Cidade"/>
-		<mapping class="br.com.snowbine.entity.Cliente"/>
-		<mapping class="br.com.snowbine.entity.Endereco"/>
-		<mapping class="br.com.snowbine.entity.Estado"/>
-		<mapping class="br.com.snowbine.entity.Grupo"/>
-		<mapping class="br.com.snowbine.entity.Marmita"/>
-		<mapping class="br.com.snowbine.entity.Usuario"/>
-		<mapping class="br.com.snowbine.entity.Venda"/>
+		<mapping class="br.com.snowbine.sistema.entity.Alimento"/>
+		<mapping class="br.com.snowbine.sistema.entity.Cidade"/>
+		<mapping class="br.com.snowbine.sistema.entity.Cliente"/>
+		<mapping class="br.com.snowbine.sistema.entity.Endereco"/>
+		<mapping class="br.com.snowbine.sistema.entity.Estado"/>
+		<mapping class="br.com.snowbine.sistema.entity.Grupo"/>
+		<mapping class="br.com.snowbine.sistema.entity.Marmita"/>
+		<mapping class="br.com.snowbine.sistema.entity.Usuario"/>
+		<mapping class="br.com.snowbine.sistema.entity.Venda"/>
 	 
 	</session-factory>
 

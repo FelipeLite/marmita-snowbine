@@ -1,6 +1,6 @@
 package br.com.test.util;
 
-import br.com.snowbine.util.StringUtils;
+import br.com.snowbine.sistema.util.StringUtils;
 
 public class TestStringUtils
 {

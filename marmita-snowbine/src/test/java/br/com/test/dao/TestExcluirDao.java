@@ -3,7 +3,7 @@ package br.com.test.dao;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
-import br.com.snowbine.dao.EstadoDao;
+import br.com.snowbine.sistema.dao.EstadoDao;
 
 public class TestExcluirDao
 {

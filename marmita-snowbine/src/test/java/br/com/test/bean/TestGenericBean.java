@@ -2,8 +2,8 @@ package br.com.test.bean;
 
 import java.util.List;
 
-import br.com.snowbine.bean.EstadoBean;
-import br.com.snowbine.entity.Estado;
+import br.com.snowbine.sistema.bean.EstadoBean;
+import br.com.snowbine.sistema.entity.Estado;
 
 public class TestGenericBean
 {
