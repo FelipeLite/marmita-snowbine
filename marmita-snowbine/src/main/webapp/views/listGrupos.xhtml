@@ -1,0 +1,31 @@
+<ui:composition
+	 xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/template/template.xhtml">
+	
+	<ui:define name="content">
+	 	<p:dataTable id ="dataTable" var="grupos" value="#{grupoListBean.listaEntidade}" border="1" cellspacing="0" cellpadding="2" paginator="true" rows="15" paginatorPosition="bottom" >
+	 		<p:column headerText="Id" value="#{grupos.id}" sortBy="#{grupos.id}">
+		 		<h:outputText value="#{grupos.id}"/>
+		 	</p:column>
+			<p:column headerText="Nome" value="#{grupos.nome}" sortBy="#{grupos.nome}">
+		 		<h:outputText value="#{grupos.nome}"/>
+		 	</p:column>
+		 	<p:column headerText="Ações">
+				<p:commandButton icon="ui-icon-pencil" ajax="true" title="editar" onclick="PF('myDialog').show()" actionListener="#{navigationBean.openDialog}"/>
+				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{grupoListBean.excluir}">
+					<f:setPropertyActionListener value="#{grupos}" target="#{grupoListBean.entidade}"/>
+				</p:commandButton>
+		 	</p:column>    
+		</p:dataTable>
+		
+		<p:dialog header="Basic Dialog" id ="myDyalog" widgetVar="myDialog" minHeight="40">
+		<p:outputPanel id="myOutputPanel">
+    		<h:outputText value="Resistance to PrimeFaces is futile!" />
+    		</p:outputPanel>
+		</p:dialog>
+	</ui:define>
+</ui:composition>	

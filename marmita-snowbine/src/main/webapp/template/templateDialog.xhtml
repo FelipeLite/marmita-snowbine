@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" http-equiv="Content-Type"
+	content="text/html; charset=utf-8">
+
+
+	<h:head>
+		<title>Marmitas Snowbine</title>
+	</h:head>
+
+	<h:body>
+		<p:layout fullPage="true" resizeTitle="resize"
+			style="background-color:#FFFFFF;">
+
+			<p:layoutUnit styleClass="layoutUnitCenter" position="center">
+				<div align="center">
+					<p:panel widgetVar="100%">
+						<h:form id="formDialog">
+							<p:messages id="msgs" showDetail="false" showSummary="true"
+								autoUpdate="true" globalOnly="true" redisplay="false" />
+							<ui:insert name="content" />
+						</h:form>
+					</p:panel>
+				</div>
+			</p:layoutUnit>
+		</p:layout>
+	</h:body>
+</f:view>
+</html>
