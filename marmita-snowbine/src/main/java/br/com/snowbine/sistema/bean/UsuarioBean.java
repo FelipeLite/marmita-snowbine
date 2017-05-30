@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
 
-import br.com.snowbine.base.bean.BaseBean;
+import br.com.snowbine.base.bean.lista.BaseBeanLista;
 import br.com.snowbine.base.session.SessionContext;
 import br.com.snowbine.sistema.dao.UsuarioDao;
 import br.com.snowbine.sistema.entity.Usuario;
@@ -15,7 +15,7 @@ import br.com.snowbine.sistema.util.UploadUtils;
 
 @ManagedBean
 @SessionScoped
-public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Serializable
+public class UsuarioBean extends BaseBeanLista<Usuario,UsuarioDao> implements Serializable
 {
 	private static final long serialVersionUID = -1357026317790380693L;
 	
@@ -37,7 +37,7 @@ public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Seriali
 		this.imagemPerfil = imagemPerfil;
 	}
 	
-	//Criptografa a senha
+	/**Criptografa a senha
 	@Override
 	public String cadastrar(String entidade)
 	{
@@ -87,7 +87,7 @@ public class UsuarioBean extends BaseBean<Usuario,UsuarioDao> implements Seriali
 		
 		return "/security/login.xhtml?faces-redirect=true";
 	}
-	
+	**/
 	private boolean validarLoginSenha()
 	{
 		String login = this.getEntidade().getLogin().trim();

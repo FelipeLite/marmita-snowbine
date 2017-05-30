@@ -1,34 +1,45 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+<ui:composition
+	 xmlns="http://www.w3.org/1999/xhtml" 
     xmlns:h="http://java.sun.com/jsf/html" 
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     template="/template/template.xhtml">
-
-  <ui:define name="metadata">
-	</ui:define>
 	
 	<ui:define name="content">
-	 	<p:dataTable var="clientes" value="#{clienteBean.listaEntidade}" paginator="true" rows="15">
-			<p:column headerText="Nome" value="#{clientes.nome}">
+	 	<p:dataTable id="dataTable" var="clientes" value="#{clienteListBean.listaEntidade}" border="1" cellspacing="0" cellpadding="2" paginator="true" rows="15" paginatorPosition="bottom" >
+	 		<p:column headerText="Id" value="#{clientes.id}" sortBy="#{clientes.id}">
+		 		<h:outputText value="#{clientes.id}"/>
+		 	</p:column>
+			<p:column headerText="Nome" value="#{clientes.nome}" sortBy="#{clientes.nome}">
 		 		<h:outputText value="#{clientes.nome}"/>
 		 	</p:column>
-			<p:column headerText="Sobrenome" sortBy="#{clientes.sobrenome}">
+			<p:column headerText="Sobrenome" value="#{clientes.sobrenome}" sortBy="#{clientes.sobrenome}">
 		   		<h:outputText value="#{clientes.sobrenome}"/>
 		 	</p:column>    
-		 	<p:column headerText="Idade" value="#{clientes.idade}">
+		 	<p:column headerText="Idade" value="#{clientes.idade}" sortBy="#{clientes.idade}">
 		 		<h:outputText value="#{clientes.idade}"/>
 		 	</p:column>   
-		 	<p:column headerText="CPF" value="#{clientes.cpf}">
+		 	<p:column headerText="CPF" value="#{clientes.cpf} " sortBy="#{clientes.cpf}">
 		 		<h:outputText value="#{clientes.cpf}"/>
 		 	</p:column>
-		 	<p:column headerText="RG" value="#{clientes.rg}">
+		 	<p:column headerText="RG" value="#{clientes.rg}" sortBy="#{clientes.rg}" >
 		 		<h:outputText value="#{clientes.rg}"/>
 		 	</p:column>
+		 	<p:column headerText="Cidade" value="#{clientes.endereco.cidade.nome}" sortBy="#{clientes.endereco.cidade.nome}">
+		 		<h:outputText value="#{clientes.endereco.cidade.nome}"/>
+		 	</p:column>
+		 	<p:column headerText="Rua" value="#{clientes.endereco.rua}" sortBy="#{clientes.endereco.rua}">
+		 		<h:outputText value="#{clientes.endereco.rua}"/>
+		 	</p:column>
 		 	<p:column headerText="Ações">
-				<p:commandButton icon="ui-icon-pencil" actionListener="#{clientModal.openDialog('Cliente', clientes.id)}"/>
-				<p:commandButton icon="ui-icon-trash" actionListener="#{clienteBean.excluir(clientes,'Cliente')}"/>
+				<p:commandButton icon="ui-icon-pencil" actionListener="#{navigationBean.openDialog('Cliente')}" process="@this">
+					 <f:param name = "id" value = "${clienteFormBean.id}" />
+				</p:commandButton>
+				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{clienteListBean.excluir}">
+					<f:setPropertyActionListener value="#{clientes}" target="#{clienteListBean.entidade}"/>
+				</p:commandButton>
 		 	</p:column>    
 		</p:dataTable>
 	</ui:define>
-</ui:composition>
+</ui:composition>	

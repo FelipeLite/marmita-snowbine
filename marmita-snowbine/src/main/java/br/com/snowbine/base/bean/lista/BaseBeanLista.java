@@ -1,34 +1,28 @@
-package br.com.snowbine.base.bean;
+package br.com.snowbine.base.bean.lista;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 
 import br.com.snowbine.base.dao.GenericDao;
 
-public class BaseBean<T extends Serializable, D extends GenericDao<T>>
+public class BaseBeanLista<T extends Serializable, D extends GenericDao<T>>
 {
 	private D dao;
 	private T entidade;
+	
 	private List<T> listaEntidade;
 
 	private Class<T> classeEntidade;
 	private Class<D> classeDao;
 
-	public BaseBean()
-	{
-
-	}
-
-	@PostConstruct
-	public void init()
+	
+	@SuppressWarnings("unchecked")
+	public BaseBeanLista()
 	{
 		// Encontra a classe
 		classeEntidade = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -38,8 +32,6 @@ public class BaseBean<T extends Serializable, D extends GenericDao<T>>
 		{
 			dao = classeDao.newInstance();
 			entidade = classeEntidade.newInstance();
-
-			this.listar();
 		} 
 		
 		catch (Exception e)
@@ -47,6 +39,7 @@ public class BaseBean<T extends Serializable, D extends GenericDao<T>>
 			e.printStackTrace();
 		}
 	}
+
 
 	@SuppressWarnings("unchecked")
 	public List<T> listar()
@@ -66,23 +59,6 @@ public class BaseBean<T extends Serializable, D extends GenericDao<T>>
 		return this.getListaEntidade();
 	}
 
-	public String cadastrar(String entidade)
-	{
-		try
-		{
-			Method salvar = dao.getClass().getMethod("salvar", Serializable.class);
-			salvar.invoke(dao, this.entidade);
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(entidade + " Salvo com sucesso"));
-		}
-
-		catch (Exception e)
-		{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro ao salvar o registro!"));
-			e.printStackTrace();
-		}
-
-		return "";
-	}
 
 	@SuppressWarnings("unchecked")
 	public void editar(Integer id)
@@ -99,15 +75,51 @@ public class BaseBean<T extends Serializable, D extends GenericDao<T>>
 		}
 
 	}
-
-	public void onLoad(AjaxBehaviorEvent event)
+	
+	@SuppressWarnings("unchecked")
+	public T consultarPorId(Integer id)
 	{
-		System.out.println("oi");
+		try
+		{
+			Method consultarPorId = dao.getClass().getMethod("consultarPorId", Integer.class);
+			T entidadeRetornar = (T) consultarPorId.invoke(dao, id);
+			
+			return entidadeRetornar;
+		}
+
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
-	public String listagem(String nomeEntidade)
+	public String excluir()
 	{
-		return "list" + nomeEntidade;
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+		try
+		{
+			System.out.println(this.getEntidade());
+			dao.excluir(this.entidade);
+			
+			context.addMessage(null, new FacesMessage("Registro excluído com sucesso!"));
+			
+			this.listar();
+			
+			return "";
+		} 
+		
+		catch (Exception e)
+		{
+			FacesMessage mensagem = new FacesMessage("Ocorreu um erro ao realizar a exclusão do registro!");
+			mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
+			context.addMessage(null, mensagem);
+			
+			return null;
+
+		}
+		
 	}
 
 	public void setListaEntidade(List<T> lista)

@@ -5,6 +5,55 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
-	<center>
-	</center>
+	<header>
+	 <ui:composition>
+
+		<p:panelGrid columns="3" layout="grid" style="overflow:hidden;">
+
+			<div>
+				<p:button id="btn-home"
+					href="http://localhost:8080/marmita-snowbine/" icon="ui-icon-home"
+					style="width:63px; height:63px;" />
+
+				<p:tooltip id="tooltip-home" for="btn-home" value="Pagina Inicial"
+					trackMouse="true" />
+			</div>
+
+			<p:graphicImage id="banner_header"
+				name="/images/banners/banner-header-3.png" title="Marmitas Snowbine"
+				style="height:65px;" />
+
+			<div>
+				<h:outputText value="Olá Usuário"
+					style="position:absolute; top:35px; right:170px" />
+			</div>
+
+			<div>
+				<p:graphicImage id="usr_photo" name="/images/profile/user.png"
+					style="width:40px; height:40px; position:relative; top:15px; right:15px" />
+				<p:tooltip id="tooltip-photo" for="usr_photo" value="Editar perfil"
+					trackMouse="true" />
+					
+				<h:form>
+					<p:menuButton id="btn-info" icon="ui-icon-info"
+						style="margin-top:5px; width:20px; height:20px; position:relative; top:13px; right:20px;">
+						<p:menuitem value="Meu perfil" icon="ui-icon-key" />
+						<p:menuitem value="Meus pedidos" icon="ui-icon-cart" />
+						<p:separator />
+						<p:menuitem value="Tenho dúvidas" icon="ui-icon-help" />
+						<p:separator />
+						<p:menuitem value="Sair" icon="ui-icon-close" />
+					</p:menuButton>
+
+					<p:tooltip id="tooltip-info" for="btn-info" value="Informações"
+						trackMouse="true" />
+
+				</h:form>
+			</div>
+		</p:panelGrid>
+		<p:tooltip id="tooltip-bannero" for="banner_header" value="Bem-vindo ao nosso site!"
+				trackMouse="true" />
+
+	</ui:composition> 
+	</header>
 </ui:composition>

@@ -27,7 +27,9 @@ public class HibernateUtils
 			SessionFactory fabrica = configuracao.buildSessionFactory(registro);
 
 			return fabrica;
-		} catch (Throwable ex)
+		} 
+		
+		catch (Throwable ex)
 		{
 			System.err.println("A fábrica de " + "sessões não pode ser criada." + ex);
 			throw new ExceptionInInitializerError(ex);

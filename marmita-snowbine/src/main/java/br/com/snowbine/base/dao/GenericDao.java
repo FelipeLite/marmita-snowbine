@@ -88,7 +88,10 @@ public class GenericDao<T extends Serializable>
 		Session sessao = HibernateUtils.getFabricaDeSessoes().openSession();
 		try
 		{
+			Transaction t = sessao.beginTransaction();
 			sessao.delete(objeto);
+			t.commit();
+			sessao.flush();
 		}
 		
 		catch (Exception e)

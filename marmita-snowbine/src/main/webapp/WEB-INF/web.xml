@@ -10,7 +10,7 @@
 	<!-- Estágio do Projeto -->
 	<context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
+        <param-value>Production</param-value>
     </context-param>
     
     <!-- Configuração do JSF -->
@@ -26,20 +26,8 @@
     
     <welcome-file-list>
     	<welcome-file>views/index.xhtml</welcome-file>
-    	<welcome-file>views/index.html</welcome-file>
     	<welcome-file>views/index.jsp</welcome-file> 
 	</welcome-file-list>
-    
-    <!-- Filter do Login -->
-    <filter>
-    	<filter-name>LoginFilter</filter-name>
-    	<filter-class>br.com.snowbine.base.filter.LoginFilter</filter-class>
-    </filter>
-    
-    <filter-mapping>
-    	<filter-name>LoginFilter</filter-name>
-    	<url-pattern>/restricted/*</url-pattern>
-    </filter-mapping>
     
     <!-- Define o timeout da sessão -->
     <session-config>
