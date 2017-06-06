@@ -1,56 +1,44 @@
-package br.com.snowbine.sistema.bean;
+package br.com.snowbine.sistema.bean.form;
 
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.servlet.http.Part;
+import javax.faces.bean.ViewScoped;
 
-import br.com.snowbine.base.bean.lista.BaseBeanLista;
-import br.com.snowbine.base.session.SessionContext;
+import org.primefaces.event.FileUploadEvent;
+
+import br.com.snowbine.base.bean.form.BaseBeanForm;
 import br.com.snowbine.sistema.dao.UsuarioDao;
 import br.com.snowbine.sistema.entity.Usuario;
 import br.com.snowbine.sistema.util.StringUtils;
 import br.com.snowbine.sistema.util.UploadUtils;
 
 @ManagedBean
-@SessionScoped
-public class UsuarioBean extends BaseBeanLista<Usuario,UsuarioDao> implements Serializable
+@ViewScoped
+public class UsuarioFormBean extends BaseBeanForm<Usuario,UsuarioDao> implements Serializable
 {
-	private static final long serialVersionUID = -1357026317790380693L;
+	private static final long serialVersionUID = 1L;
+	String srcImage = "";
 	
-	public Usuario usuarioLogado = null;
-	public Part imagemPerfil = null;
 	
-	public Usuario getUsuarioLogado()
+	public void uploadImage(FileUploadEvent event)
 	{
-		return this.usuarioLogado;
+		srcImage = UploadUtils.upload(event);
 	}
 	
-	public Part getImagemPerfil()
-	{
-		return this.imagemPerfil;
-	}
-	
-	public void setImagemPerfil(Part imagemPerfil)
-	{
-		this.imagemPerfil = imagemPerfil;
-	}
-	
-	/**Criptografa a senha
+	//Criptografa a senha
 	@Override
 	public String cadastrar(String entidade)
 	{
+		System.out.println(srcImage);
 		this.getEntidade().setSenha(StringUtils.criptografarSenha(this.getEntidade().getSenha()));
 		
-		if(imagemPerfil != null)
-		{
-			this.getEntidade().setSrcImagemPerfil(UploadUtils.uploadImage(imagemPerfil));
-		}
+		this.getEntidade().setSrcImagemPerfil(srcImage);
 
-		return super.cadastrar("Usuario");
+		return super.cadastrar(entidade);
 	}
 	
+	/**
 	public String logar()
 	{
 		System.out.println("[Login e verificação]");	
@@ -81,14 +69,13 @@ public class UsuarioBean extends BaseBeanLista<Usuario,UsuarioDao> implements Se
 	
 	public String logOut()
 	{
-		System.out.println("[Fazendo logoff] " + usuarioLogado.getLogin());
 		
 		SessionContext.getInstance().encerrarSessao();
 		
 		return "/security/login.xhtml?faces-redirect=true";
 	}
 	**/
-	private boolean validarLoginSenha()
+	/**private boolean validarLoginSenha()
 	{
 		String login = this.getEntidade().getLogin().trim();
 		String senha = this.getEntidade().getSenha().trim();
@@ -133,5 +120,5 @@ public class UsuarioBean extends BaseBeanLista<Usuario,UsuarioDao> implements Se
 			e.printStackTrace();
 			return false;
 		}
-	}
+	}**/
 }

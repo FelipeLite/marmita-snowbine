@@ -1,11 +1,14 @@
-package br.com.snowbine.sistema.bean.form;
+package br.com.snowbine.sistema.bean.edit;
 
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
+import br.com.snowbine.base.bean.edit.BaseBeanEdit;
 import br.com.snowbine.base.bean.form.BaseBeanForm;
 import br.com.snowbine.sistema.dao.ClienteDao;
 import br.com.snowbine.sistema.entity.Cliente;
@@ -13,7 +16,7 @@ import br.com.snowbine.sistema.entity.Endereco;
 
 @Named
 @ViewScoped
-public class ClienteFormBean extends BaseBeanForm<Cliente, ClienteDao> implements Serializable
+public class ClienteEditBean extends BaseBeanEdit<Cliente, ClienteDao> implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +44,7 @@ public class ClienteFormBean extends BaseBeanForm<Cliente, ClienteDao> implement
 		this.id = id;
 	}
 
-	public ClienteFormBean()
+	public ClienteEditBean()
 	{
 		endereco = new Endereco();
 	}
@@ -49,13 +52,20 @@ public class ClienteFormBean extends BaseBeanForm<Cliente, ClienteDao> implement
 	@PostConstruct
 	public void init()
 	{
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+		
+		Integer idEntidade = Integer.parseInt((String) session.getAttribute("idEntidade"));
+		
+		this.setEntidade(this.consultarPorId(idEntidade));
+		this.setEndereco(this.getEntidade().getEndereco());
 	}
 
 	public String cadastrarCliente()
 	{
 		this.getEntidade().setEndereco(endereco);
 
-		super.cadastrar("Cliente");
+		super.cadastrar();
 
 		return "";
 	}

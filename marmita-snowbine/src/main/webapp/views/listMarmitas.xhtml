@@ -1,0 +1,28 @@
+<ui:composition
+	 xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/template/template.xhtml">
+	
+	<ui:define name="content">
+	 	<p:dataTable id="dataTable" var="marmitas" value="#{marmitaListBean.listaEntidade}" border="1" cellspacing="0" cellpadding="2" paginator="true" rows="15" paginatorPosition="bottom" >
+			<p:column headerText="Nome" value="#{marmitas.nome}" sortBy="#{marmitas.nome}">
+		 		<h:outputText value="#{marmitas.nome}"/>
+		 	</p:column>
+			<p:column headerText="Peso" value="#{marmitas.peso}" sortBy="#{marmitas.peso}">
+		   		<h:outputText value="#{marmitas.peso}"/>
+		 	</p:column>    
+		 	<p:column headerText="Preço" value="#{marmitas.precoKg} " sortBy="#{marmitas.precoKg}">
+		 		<h:outputText value="#{marmitas.precoKg}"/>
+		 	</p:column>
+		 	<p:column headerText="Ações">
+				<p:commandButton icon="ui-icon-pencil" ajax="true" title="editar" onclick="PF('myDialog').show()" actionListener="#{navigationBean.openDialog}"/>
+				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{marmitaListBean.excluir}">
+					<f:setPropertyActionListener value="#{marmitas}" target="#{marmitaListBean.entidade}"/>
+				</p:commandButton>
+		 	</p:column>    
+		</p:dataTable>
+	</ui:define>
+</ui:composition>	

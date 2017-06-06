@@ -11,10 +11,8 @@ public class Menu
 	@PostConstruct
 	public void init()
 	{
-		System.out.println("iniciando");
 	}
 	public void teste()
 	{
-		System.out.println("dentro do teste");
 	}
 }

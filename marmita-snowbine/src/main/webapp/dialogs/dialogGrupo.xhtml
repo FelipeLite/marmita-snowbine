@@ -13,14 +13,11 @@
     			</f:facet>
     			
 	           <p:outputLabel for="nome" value="Nome:" />
-	           <p:inputText id="nome" value="#{grupoFormBean.entidade.nome}" required="true" requiredMessage="O nome deve ser preenchido." />
+	           <p:inputText id="nome" value="#{grupoEditBean.entidade.nome}" required="true" requiredMessage="O nome deve ser preenchido." />
 	                  
 	            <p:column>
-	         		<p:commandButton id="salvar" icon="ui-icon-disk" actionListener="#{grupoFormBean.cadastrar}" update="panel" oncomplete="setTimeout(function() { $('#msgs').html(''); }, 3000);" />
-	           		<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" actionli="#{grupoFormBean.listagem('Grupo')}" />
-	           			
+	         		<p:commandButton id="salvar" icon="ui-icon-disk" action="#{grupoEditBean.cadastrar}" update="panel" oncomplete="setTimeout(function() { $('#msgs').html(''); }, 3000);" />
 	           		<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>
-	           		<p:tooltip id="toolTipVoltar" for="voltar" value="Retornar a listagem" position="top"/>
 	             </p:column>
 		</p:panelGrid>
 	           

@@ -1,6 +1,7 @@
 package br.com.snowbine.sistema.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,8 +33,8 @@ public class Cliente implements Serializable, BaseEntity
 	@Column(name = "sobrenome", nullable = false)
 	private String sobrenome;
 
-	@Column(name = "idade", nullable = false)
-	private Integer idade;
+	@Column(name = "dt_nascimento", nullable = false)
+	private Date dataNascimento;
 
 	@Column(name = "cpf", nullable = false)
 	private String cpf;
@@ -79,14 +80,14 @@ public class Cliente implements Serializable, BaseEntity
 		this.sobrenome = sobrenome;
 	}
 
-	public Integer getIdade()
+	public Date getDataNascimento()
 	{
-		return idade;
+		return dataNascimento;
 	}
 
-	public void setIdade(Integer idade)
+	public void setDataNascimento(Date dataNascimento)
 	{
-		this.idade = idade;
+		this.dataNascimento = dataNascimento;
 	}
 
 	public String getCpf()

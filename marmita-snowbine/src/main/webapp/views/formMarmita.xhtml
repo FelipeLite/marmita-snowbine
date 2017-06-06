@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+	<ui:define name="content">
+		<p:panelGrid columns="2" style="width=100%;" id="panel">
+			<f:facet name="header">
+				<p:outputLabel value="Criação de Marmita" />
+			</f:facet>
+        	
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" value="#{marmitaFormBean.entidade.nome}" required="true" requiredMessage="O nome deve ser preenchido."/>
+			
+			<p:outputLabel for="principal" value="Escolha principal (Min. 1, Max. 2):" />
+			<p:selectCheckboxMenu id="principal" value="#{marmitaFormBean.entidade.alimentos}" label="Principal" multiple="true"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:350px" 
+                              required="true" requiredMessage="Você deve escolher no mínimo um alimento como principal">
+            	<f:selectItems value="#{alimentoListBean.listarAlimentosPorCategoria(1)}" var="alimento" itemLabel="#{alimento.nome}" itemValue="#{alimento}" />
+        	</p:selectCheckboxMenu>
+			
+			<p:outputLabel for="acompanhamentos" value="Escolha de acompanhamentos (Min. 2, Max. 4):" />
+			<p:selectCheckboxMenu id="acompanhamentos" value="#{marmitaFormBean.entidade.alimentos}" label="Acompanhamentos" multiple="true"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:350px"
+                              required="true" requiredMessage="Você deve escolher no mínimo dois alimentos como acompanhamento">
+            	<f:selectItems value="#{alimentoListBean.listarAlimentosPorCategoria(2)}" var="alimento" itemLabel="#{alimento.nome}" itemValue="#{alimento}"/>
+        	</p:selectCheckboxMenu>			
+			
+			<p:outputLabel for="sobremesa" value="Escolha sobremesa:" />
+			<p:selectOneMenu id="sobremesa" value="#{marmitaFormBean.entidade.alimentos}" label="Sobremesa" multiple="false"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:350px">
+            	<f:selectItems value="#{alimentoListBean.listarAlimentosPorCategoria(3)}" var="alimento" itemLabel="#{alimento.nome}" itemValue="#{alimento}"/>
+        	</p:selectOneMenu>			
+			
+			<p:outputLabel for="bebida" value="Escolha sua bebida:" />
+			<p:selectOneMenu id="bebida" value="#{marmitaFormBean.entidade.alimentos}" label="Bebida" multiple="false"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:350px">
+            	<f:selectItems value="#{alimentoListBean.listarAlimentosPorCategoria(4)}" var="alimento" itemLabel="#{alimento.nome}" itemValue="#{alimento}"/>
+        	</p:selectOneMenu>			
+
+			<p:outputLabel for="peso" value="Peso:" />
+			<p:inputNumber id="peso" value="#{marmitaFormBean.entidade.peso}" decimalSeparator="," thousandSeparator="."/>
+			
+			<p:outputLabel for="preco" value="Preço:" />
+			<p:inputNumber id="preco" value="#{marmitaFormBean.entidade.preco}" decimalSeparator="," thousandSeparator="."/>
+			
+			<p:column>
+				<p:commandButton id="salvar" icon="ui-icon-disk"
+					actionListener="#{marmitaFormBean.cadastrar}" update="panel" />
+
+				<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w"
+					action="#{marmitaFormBean.listagem('Alimento')}" />
+
+				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar"
+					position="top" />
+				<p:tooltip id="toolTipVoltar" for="voltar"
+					value="Retornar a listagem" position="top" />
+			</p:column>
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>

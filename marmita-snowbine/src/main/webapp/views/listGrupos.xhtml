@@ -15,17 +15,13 @@
 		 		<h:outputText value="#{grupos.nome}"/>
 		 	</p:column>
 		 	<p:column headerText="Ações">
-				<p:commandButton icon="ui-icon-pencil" ajax="true" title="editar" onclick="PF('myDialog').show()" actionListener="#{navigationBean.openDialog}"/>
+		 	<p:commandButton icon="ui-icon-pencil" actionListener="#{navigationBean.openDialog('Grupo',grupos.id)}" process="@this" update="@all" action="#{grupoListBean.listar}">
+				</p:commandButton>
 				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{grupoListBean.excluir}">
 					<f:setPropertyActionListener value="#{grupos}" target="#{grupoListBean.entidade}"/>
 				</p:commandButton>
 		 	</p:column>    
 		</p:dataTable>
-		
-		<p:dialog header="Basic Dialog" id ="myDyalog" widgetVar="myDialog" minHeight="40">
-		<p:outputPanel id="myOutputPanel">
-    		<h:outputText value="Resistance to PrimeFaces is futile!" />
-    		</p:outputPanel>
-		</p:dialog>
+		<p:commandButton icon="ui-icon-arrowrefresh-1-s" title="Atualizar" process="@this" update="@all" action="#{grupoListBean.listar}" widgetVar="refreshButton" />
 	</ui:define>
 </ui:composition>	

@@ -17,10 +17,8 @@
 	                  
 	            <p:column>
 	         		<p:commandButton id="salvar" icon="ui-icon-disk" actionListener="#{grupoFormBean.cadastrar}" update="panel" oncomplete="setTimeout(function() { $('#msgs').html(''); }, 3000);" />
-	           		<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w" actionli="#{grupoFormBean.listagem('Grupo')}" />
 	           			
 	           		<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top"/>
-	           		<p:tooltip id="toolTipVoltar" for="voltar" value="Retornar a listagem" position="top"/>
 	             </p:column>
 		</p:panelGrid>
 	           

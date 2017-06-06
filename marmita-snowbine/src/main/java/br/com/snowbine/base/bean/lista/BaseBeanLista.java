@@ -100,7 +100,6 @@ public class BaseBeanLista<T extends Serializable, D extends GenericDao<T>>
 		
 		try
 		{
-			System.out.println(this.getEntidade());
 			dao.excluir(this.entidade);
 			
 			context.addMessage(null, new FacesMessage("Registro excluído com sucesso!"));

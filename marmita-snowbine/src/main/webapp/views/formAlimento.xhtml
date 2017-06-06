@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+
+	<ui:define name="content">
+		<p:panelGrid columns="2" style="width=100%;" id="panel">
+			<f:facet name="header">
+				<p:outputLabel value="Cadastro de Alimentos" />
+			</f:facet>
+			
+			<p:outputLabel for="categoria" value="Categoria:"/>
+			<p:selectOneButton id="categoria" value="#{alimentoFormBean.entidade.categoria}" required="true" requiredMessage="A categoria deve ser escolhida.">
+	            <f:selectItem itemLabel="Principal" itemValue="Principal" />
+	            <f:selectItem itemLabel="Acompanhamento" itemValue="Acompanhamento" />
+	            <f:selectItem itemLabel="Sobremesa" itemValue="Sobremesa" />
+	            <f:selectItem itemLabel="Bebida" itemValue="Bebida" />
+        	</p:selectOneButton>
+        	
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" value="#{alimentoFormBean.entidade.nome}" required="true" requiredMessage="O nome deve ser preenchido."/>
+
+			<p:outputLabel for="precoKg" value="Preço/Kg:" />
+			<p:inputNumber id="precoKg" value="#{alimentoFormBean.entidade.precoKg}" decimalSeparator="," thousandSeparator="." 
+				required="true" requiredMessage="O preço deve ser informado."/>
+			
+			<p:column>
+				<p:commandButton id="salvar" icon="ui-icon-disk"
+					actionListener="#{alimentoFormBean.cadastrar}" update="panel" />
+
+				<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w"
+					action="#{alimentoFormBean.listagem('Alimento')}" />
+
+				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar"
+					position="top" />
+				<p:tooltip id="toolTipVoltar" for="voltar"
+					value="Retornar a listagem" position="top" />
+			</p:column>
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>

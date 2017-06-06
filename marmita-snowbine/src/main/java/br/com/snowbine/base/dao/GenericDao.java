@@ -141,9 +141,6 @@ public class GenericDao<T extends Serializable>
 		}
 
 		String hql = "from " + getEntityClass().getName() + " t" + parametros;
-		
-		System.out.println(hql);
-		
 		org.hibernate.Query query = sessao.createQuery(hql);
 		
 		try

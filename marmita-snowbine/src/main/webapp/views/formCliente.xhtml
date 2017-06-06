@@ -23,9 +23,9 @@
 				<f:validateLength minimum="2" maximum="50"/>
 			</p:inputText>
 			
-			<p:outputLabel for="idade" value="Idade" />
-			<p:inputNumber id="idade" value="#{clienteFormBean.entidade.idade}" required="true" requiredMessage="Idade é obrigatória" decimalPlaces="0" maxlength="110"/>
-
+			<p:outputLabel for="dtNascimento" value="Data de Nascimento" />
+       		<p:calendar id="dtNascimento" value="#{clienteFormBean.entidade.dataNascimento}" pattern="yyyy-MM-dd" mask="true" required="true" requiredMessage="Data de nascimento é obrigatória"/>
+        
 			<p:outputLabel for="cpf" value="Cpf:" />
 			<p:inputMask mask="999.999.999-99" id="cpf"	value="#{clienteFormBean.entidade.cpf}" required="true" requiredMessage="Cpf é obrigatório"/>
 
@@ -56,7 +56,7 @@
 				<p:commandButton id="salvar" icon="ui-icon-disk" actionListener="#{clienteFormBean.cadastrarCliente}" update="panel"/>
 				
 				<p:commandButton id="voltar" icon="ui-icon-circle-arrow-w"
-					action="#{clienteFormBean.listagem('Cliente')}" />
+					actionListener="#{clienteFormBean.listagem('Cliente')}" />
 
 				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar"
 					position="top" />

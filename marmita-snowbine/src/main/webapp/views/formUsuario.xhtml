@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+	<ui:define name="content">
+		<p:panelGrid columns="2" style="width=100%;" id ="panel">
+		
+				<p:outputLabel for="login" value="Login" />
+				<p:inputText id="login" value="#{usuarioFormBean.entidade.login}" required="true" requiredMessage="Login é obrigatório"/>
+
+				<p:outputLabel for="senha" value="Senha" />
+				<p:password id="senha" value="#{usuarioFormBean.entidade.senha}" required="true" requiredMessage="Senha é obrigatória"/>
+
+				<p:outputLabel value="Ativo: " />
+				<p:selectBooleanCheckbox value="#{usuarioFormBean.entidade.ativo}" />
+
+				<p:outputLabel for="email" value="Email:" />
+				<p:inputText id="email" value="#{usuarioFormBean.entidade.email}" />
+
+				<p:outputLabel for="grupos" value="Grupo:" />
+				<p:selectOneMenu id="grupos" required="true" requiredMessage="Grupo é obrigatório"
+					value="#{usuarioFormBean.entidade.grupo}">
+					<f:converter converterId="generic" />
+					<f:selectItem itemLabel="Selecione um Grupo: " itemValue="" />
+					<f:selectItems value="#{grupoListBean.listaEntidade}" var="grupo"
+						itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="cliente" value="Cliente:" required="true" requiredMessage="Cliente é obrigatório"/>
+				<p:selectOneMenu id="cliente"
+					value="#{usuarioFormBean.entidade.cliente}">
+					<f:converter converterId="generic" />
+					<f:selectItem itemLabel="Selecione um cliente: " itemValue="" />
+					<f:selectItems value="#{clienteListBean.listaEntidade}"
+						var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="imagem-perfil" value="Imagem de perfil:" />
+				<p:fileUpload
+				 id="imagem-perfil" fileUploadListener="#{usuarioFormBean.uploadImage}"
+				 label="Escolher" uploadLabel="Enviar" cancelLabel="Cancelar"
+				 allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+    			 invalidFileMessage="São permitidas somente imagens (gif, jpeg, jpg e png)"
+    			 />
+				<p:column>
+				<p:commandButton id="salvar" icon="ui-icon-disk" actionListener="#{usuarioFormBean.cadastrar('Usuario')}" update="panel">
+					<f:ajax execute="@form"/>
+				</p:commandButton>
+
+				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar"
+					position="top" />
+				</p:column>
+			</p:panelGrid>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,37 @@
+<ui:composition
+	 xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/template/template.xhtml">
+	
+	<ui:define name="content">
+	 	<p:dataTable id="dataTable" var="usuarios" value="#{usuarioListBean.listaEntidade}" border="1" cellspacing="0" cellpadding="2" paginator="true" rows="15" paginatorPosition="bottom" >
+	 		<p:column headerText="Id" value="#{usuarios.id}" sortBy="#{usuarios.id}">
+		 		<h:outputText value="#{usuarios.id}"/>
+		 	</p:column>
+		 	<p:column headerText="image-perfil" value="#{usuarios.srcImagemPerfil}" sortBy="#{usuarios.srcImagemPerfil}">
+		 		<p:graphicImage	name="#{usuarios.srcImagemPerfil}" style="height:65px;" />
+		 	</p:column>
+			<p:column headerText="E-mail" value="#{usuarios.email}" sortBy="#{usuarios.email}">
+		 		<h:outputText value="#{usuarios.email}"/>
+		 	</p:column>
+			<p:column headerText="login" value="#{usuarios.login}" sortBy="#{usuarios.login}">
+		   		<h:outputText value="#{usuarios.login}"/>
+		 	</p:column>    
+		 	<p:column headerText="Ativo?" value="#{usuarios.ativo}" sortBy="#{usuarios.ativo}">
+		 		<h:outputText value="#{usuarios.ativo}"/>
+		 	</p:column>   
+		 	
+		 	<p:column headerText="Ações">
+				<p:commandButton icon="ui-icon-pencil" actionListener="#{navigationBean.openDialog('Usuario',usuarios.id)}" process="@this" update="@all" action="#{usuarioListBean.listar}">
+				</p:commandButton>
+				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{usuarioListBean.excluir}">
+					<f:setPropertyActionListener value="#{usuarios}" target="#{usuarioListBean.entidade}"/>
+				</p:commandButton>
+		 	</p:column>    
+		</p:dataTable>
+		<p:commandButton icon="ui-icon-arrowrefresh-1-s" title="Atualizar" process="@this" update="@all" action="#{grupoListBean.listar}" widgetVar="refreshButton" />
+	</ui:define>
+</ui:composition>	

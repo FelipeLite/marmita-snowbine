@@ -17,9 +17,9 @@
 			<p:column headerText="Sobrenome" value="#{clientes.sobrenome}" sortBy="#{clientes.sobrenome}">
 		   		<h:outputText value="#{clientes.sobrenome}"/>
 		 	</p:column>    
-		 	<p:column headerText="Idade" value="#{clientes.idade}" sortBy="#{clientes.idade}">
-		 		<h:outputText value="#{clientes.idade}"/>
-		 	</p:column>   
+		 	<p:column headerText="Data de Nascimento" value="#{clientes.dataNascimento}" sortBy="#{clientes.dataNascimento}">
+		 		<h:outputText value="#{clientes.dataNascimento}"/>
+		 	</p:column> 
 		 	<p:column headerText="CPF" value="#{clientes.cpf} " sortBy="#{clientes.cpf}">
 		 		<h:outputText value="#{clientes.cpf}"/>
 		 	</p:column>
@@ -33,7 +33,7 @@
 		 		<h:outputText value="#{clientes.endereco.rua}"/>
 		 	</p:column>
 		 	<p:column headerText="Ações">
-				<p:commandButton icon="ui-icon-pencil" actionListener="#{navigationBean.openDialog('Cliente')}" process="@this">
+				<p:commandButton icon="ui-icon-pencil" actionListener="#{navigationBean.openDialog('Cliente', clientes.id)}" process="@this">
 					 <f:param name = "id" value = "${clienteFormBean.id}" />
 				</p:commandButton>
 				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{clienteListBean.excluir}">
@@ -41,5 +41,6 @@
 				</p:commandButton>
 		 	</p:column>    
 		</p:dataTable>
+		<p:commandButton icon="ui-icon-arrowrefresh-1-s" title="Atualizar" process="@this" update="@all" action="#{clienteListBean.listar}" widgetVar="refreshButton" />
 	</ui:define>
 </ui:composition>	
