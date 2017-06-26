@@ -86,6 +86,19 @@
 			<scope>compile</scope>
 		</dependency>
 		
+		<!-- Javax Mail -->
+		<dependency>
+    		<groupId>javax.mail</groupId>
+    		<artifactId>mail</artifactId>
+   			<version>1.4</version>
+		</dependency>
+		
+		<!-- Javax activation used by Javax Email -->
+		<dependency>
+    		<groupId>javax.activation</groupId>
+    		<artifactId>activation</artifactId>
+    		<version>1.1.1</version>
+		</dependency>
   </dependencies>
   
   <build>

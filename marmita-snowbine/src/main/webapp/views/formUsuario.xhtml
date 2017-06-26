@@ -43,8 +43,7 @@
 				 id="imagem-perfil" fileUploadListener="#{usuarioFormBean.uploadImage}"
 				 label="Escolher" uploadLabel="Enviar" cancelLabel="Cancelar"
 				 allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
-    			 invalidFileMessage="São permitidas somente imagens (gif, jpeg, jpg e png)"
-    			 />
+    			 invalidFileMessage="São permitidas somente imagens (gif, jpeg, jpg e png)"/>
 				<p:column>
 				<p:commandButton id="salvar" icon="ui-icon-disk" actionListener="#{usuarioFormBean.cadastrar('Usuario')}" update="panel">
 					<f:ajax execute="@form"/>

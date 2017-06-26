@@ -1,7 +1,27 @@
-.ajax-status {
-	position: fixed;
-	top: 85px;
-	right: 10px;
-	width: 35px;
-	height: 35px
+#login-dialog {
+	width: 260px;
+	margin: auto;
+	margin-top: 150px;
+}
+
+.grid-login {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	margin-top: 8px;
+	padding: 10px;
+	width: 100%
+}
+
+#recuperarSenha{
+	position: absolute;
+    right: 0px;
+    width: 300px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+
+body{
+	background-image: url("/marmita-snowbine/resources/images/background/background-image.jpg");
+	width: 100%;
 }

@@ -5,33 +5,39 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 	
+	<p:ajaxStatus onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
+ 
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+   			<p:graphicImage name="/images/ajaxloadingbar.gif" />
+		</p:dialog>
+		
 	<h:form>
 
 		<p:outputPanel id="menuPanel" layout="block">
 				<p:menu autoSubmenuDisplay="true" style="width:100%;height:100%;border:none;font-size:medium;padding:0px;"
 					ajax="true">
 					<p:submenu label="Cadastros" icon="ui-icon-folder-open">
-						<p:menuitem value="Cliente" url="/views/formCliente.xhtml?faces-redirect=false"/>
-						<p:menuitem value="Usuario" url="/views/formUsuario.xhtml?faces-redirect=false"/>
-						<p:menuitem value="Grupo" url="/views/formGrupo.xhtml?faces-redirect=false"/>
-						<p:menuitem value="Alimento" url="/views/formAlimento.xhtml?faces-redirect=false"/>
-						<p:menuitem value="Marmita" url="/views/formMarmita.xhtml?faces-redirect=false"/>
+						<p:menuitem value="Cliente" action="/views/formCliente.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Usuario" action="/views/formUsuario.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Grupo" action="/views/formGrupo.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Alimento" action="/views/formAlimento.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Marmita" action="/views/formMarmita.xhtml?faces-redirect=true"/>
 					</p:submenu>
 					<p:submenu label="Listas" icon="ui-icon-folder-open">
-						<p:menuitem value="Clientes" url="/views/listCliente.xhtml?faces-redirect=false"/>
-						<p:menuitem value="Usuarios" url="/views/listUsuario.xhtml?faces-redirect=false"/>
-						<p:menuitem value="Grupos" url="/views/listGrupos.xhtml?faces-redirect=false"/>
-						<p:menuitem value="Marmitas" url="/views/listMarmitas.xhtml?faces-redirect=false"/>
+						<p:menuitem value="Clientes" action="/views/listCliente.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Usuarios" action="/views/listUsuario.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Grupos" action="/views/listGrupos.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Marmitas" action="/views/listMarmitas.xhtml?faces-redirect=true"/>
 					</p:submenu>
 					<p:submenu label="Acoes" icon="ui-icon-folder-open">
 						<p:menuitem value="Comprar"
-							url="/views/page3.xhtml" />
+							action="/views/page3.xhtml" />
 						<p:menuitem value="Montar Marmita" 
-							url="/views/page4.xhtml" />
+							action="/views/page4.xhtml" />
 						<p:menuitem value="Minhas Marmitas" 
-							url="/views/page4.xhtml" />
+							action="/views/page4.xhtml" />
 						<p:menuitem value="Minhas Compras" 
-							url="/views/page4.xhtml" />
+							action="/views/page4.xhtml" />
 					</p:submenu>
 				</p:menu>
 		</p:outputPanel>

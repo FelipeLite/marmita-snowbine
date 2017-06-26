@@ -29,7 +29,6 @@ public class NavigationBean
 
 	public void openDialog(String formSelecionada, Integer idEntidade)
 	{
-		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 		
@@ -39,10 +38,13 @@ public class NavigationBean
 		Map<String,Object> options = new HashMap<String, Object>();
 		 
 	    options.put("resizable", true);
-	    options.put("draggable", false);
+	    options.put("draggable", true);
 	    options.put("modal", true);
-	    options.put("width", 500);
-	    options.put("height", 500);
+	    options.put("width", "700px");
+	    options.put("height", "600px");
+	    options.put("contentWidth", "100%");
+	    options.put("contentHeight", "90%");
+	    options.put("size", "auto");
 	     
 	     String endereco = "/dialogs/dialog" + formSelecionada;
 	     

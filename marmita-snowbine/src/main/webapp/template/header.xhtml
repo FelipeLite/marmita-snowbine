@@ -12,7 +12,7 @@
 
 			<div>
 				<p:button id="btn-home"
-					href="http://localhost:8080/marmita-snowbine/" icon="ui-icon-home"
+					href="http://localhost:8080/marmita-snowbine/views/index.xhtml" icon="ui-icon-home"
 					style="width:63px; height:63px;" />
 
 				<p:tooltip id="tooltip-home" for="btn-home" value="Pagina Inicial"
@@ -24,12 +24,12 @@
 				style="height:65px;" />
 
 			<div>
-				<h:outputText value="Olá Usuário"
-					style="position:absolute; top:35px; right:170px" />
+				<h:outputText value="#{indexBean.usuarioLogado.login}"
+					style="position:absolute; top:35px; right:170px; font-weight:bold" />
 			</div>
 
 			<div>
-				<p:graphicImage id="usr_photo" name="/images/profile/user.png"
+				<p:graphicImage id="usr_photo" name="#{indexBean.usuarioLogado.srcImagemPerfil}" alt="not_found"
 					style="width:40px; height:40px; position:relative; top:15px; right:15px" />
 				<p:tooltip id="tooltip-photo" for="usr_photo" value="Editar perfil"
 					trackMouse="true" />
@@ -42,7 +42,7 @@
 						<p:separator />
 						<p:menuitem value="Tenho dúvidas" icon="ui-icon-help" />
 						<p:separator />
-						<p:menuitem value="Sair" icon="ui-icon-close" />
+						<p:menuitem value="Sair" icon="ui-icon-close" action="#{loginBean.logout}" ajax="false"/>
 					</p:menuButton>
 
 					<p:tooltip id="tooltip-info" for="btn-info" value="Informações"

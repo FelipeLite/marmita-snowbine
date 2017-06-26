@@ -107,7 +107,11 @@ public class UploadUtils
 	public static String upload(FileUploadEvent event)
 	{
 		UploadedFile uploadedFile = event.getFile();
-		String nomeArquivo = "C:\\Users\\f_nev\\git\\marmita-snowbine\\src\\main\\assets\\images\\perfil-usuario\\"	+ generateRandomName() + uploadedFile.getFileName();
+		
+		//Serve para saber o nome do arquivo gerado e não salvar o caminho completo no banco
+		String generatedName = generateRandomName() + uploadedFile.getFileName();
+		
+		String nomeArquivo = "C:\\Users\\f_nev\\git\\marmita-snowbine\\src\\main\\webapp\\resources\\images\\profile\\" + generatedName;
 		try
 		{
 			File file = new File(nomeArquivo);
@@ -121,11 +125,10 @@ public class UploadUtils
 		
 		catch (IOException e)
 		{
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
 		}
 		
-		return nomeArquivo;
+		return "/images/profile/" + generatedName;
 
 	}
 }
