@@ -30,7 +30,6 @@ public class UsuarioFormBean extends BaseBeanForm<Usuario,UsuarioDao> implements
 	@Override
 	public String cadastrar(String entidade)
 	{
-		System.out.println(srcImage);
 		this.getEntidade().setSenha(StringUtils.criptografarSenha(this.getEntidade().getSenha()));
 		
 		this.getEntidade().setSrcImagemPerfil(srcImage);

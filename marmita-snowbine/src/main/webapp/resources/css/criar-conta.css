@@ -1,0 +1,19 @@
+#criar-conta-dialog {
+	width: 25%;
+	margin-top: 150px;
+	maring-right: 400px;
+	margin-left: 300px;
+}
+
+.grid-criar-conta {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 2px solid #808080;
+	padding: 10px;
+	width: 100%
+}
+
+body{
+	background-image: url("/marmita-snowbine/resources/images/background/background-image.jpg");
+	width: 100%;
+}

@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Login</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+ 
+	<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+    	<p:graphicImage name="/images/ajaxloadingbar.gif" />
+	</p:dialog>
+</h:head>
+<h:body>
+	<div id="login-dialog" align="center">
+		<h:form id="form">
+			<p:messages autoUpdate="true" />
+			<h:panelGrid columns="2" styleClass="grid-login">
+				<p:outputLabel value="Usuário" for="usuario" />
+				<p:inputText id="usuario" size="20" value="#{loginBean.entidade.login}" required="true" requiredMessage="O login é obrigatório!" />
+				<p:outputLabel value="Senha" for="senha" />
+				<p:password id="senha" size="20" value="#{loginBean.entidade.senha}"/>
+				<p:outputLabel />
+				<p:commandButton value="Login" action="#{loginBean.logar}" style="width:100px;"/>
+			</h:panelGrid>
+			<p:commandLink id="recuperarSenha" actionListener="#{loginBean.recuperarSenha}" ajax="true">
+        		<h:outputText value="Recuperar Senha" />
+    		</p:commandLink>
+		</h:form>
+	</div>
+</h:body>
+</html>
