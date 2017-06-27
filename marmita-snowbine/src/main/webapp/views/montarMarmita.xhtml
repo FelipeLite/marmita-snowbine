@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+
+	<ui:define name="content">
+		<p:panelGrid columns="2" style="width=100%;" id="panel">
+			<f:facet name="header">
+				<p:outputLabel value="Criação de Marmita" />
+			</f:facet>
+        	
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" value="#{marmitaFormBean.entidade.nome}" required="true" requiredMessage="O nome deve ser preenchido."/>
+			
+			<!-- Table de alimentos -->
+			<p:dataTable id="dataTable"  rowKey="#{alimento.id}"  var="alimento" binding="#{table}" value="#{alimentoListBean.listaEntidade}" paginator="true" rows="20"
+			 paginatorPosition="bottom" selection="#{marmitaFormBean.alimentos}">
+			   <f:facet name="header">
+            		Alimentos
+        		</f:facet>
+        		<p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+			   <p:column headerText="Nome" value="#{alimentos.nome}" sortBy="#{alimento.nome}">
+		 			<h:outputText value="#{alimento.nome}"/>
+		 	   </p:column>
+				<p:column headerText="Categoria" value="#{alimentos.categoria}" sortBy="#{alimentos.categoria}">
+		   			<h:outputText value="#{alimento.categoria}"/>
+		 		</p:column>    
+		 		<p:column headerText="Preço" value="#{alimento.precoKg} " sortBy="#{alimento.precoKg}">
+		 			<h:outputText value="#{alimento.precoKg}">
+		 				<f:convertNumber type="currency" currencySymbol="$" locale="pt_BR"/>
+		 			</h:outputText>
+		 		</p:column>
+		 		
+		 		<p:column headerText="Quantidade">
+		 			<p:inputMask value="#{alimento.quantidade}" mask="9" rendered="${alimento.categoria eq 'Bebida'}"/>
+		 			<p:inputMask value="#{alimento.quantidade}" mask="9" rendered="${alimento.categoria eq 'Sobremesa'}"/>
+		 			<p:inputMask value="#{alimento.quantidade}" mask="9?.99" rendered="${alimento.categoria eq 'Principal'}"/>
+		 			<p:inputMask value="#{alimento.quantidade}" mask="9?.99" rendered="${alimento.categoria eq 'Acompanhamento'}"/>
+		 			
+		 		</p:column>
+			</p:dataTable>
+			
+			<p:outputLabel for="preco" value="Preço R$:" />
+			<p:inputNumber id="preco" value="#{marmitaFormBean.preco}" readonly="true">
+			</p:inputNumber>
+			
+			<p:column>
+				<p:commandButton id="montar" icon="ui-icon-calculator" 
+					actionListener="#{marmitaFormBean.montarMarmita}" update="panel" />
+			</p:column>
+			<p:column>
+				<p:commandButton id="salvar" icon="ui-icon-disk"
+					actionListener="#{marmitaFormBean.cadastrar}" update="panel" disabled="#{marmitaFormBean.preco == 0.0}" />
+				<p:commandButton id="comprar" icon="ui-icon-check"
+					actionListener="#{marmitaFormBean.comprarMarmita}" update="panel" disabled="#{marmitaFormBean.preco == 0.0}" />
+			</p:column>
+				<p:tooltip id="toolTipSalvar" for="salvar" value="Salvar" position="top" />
+				<p:tooltip id="toolTipCalcular" for="montar" value="Calcular Preço" position="top" />
+				<p:tooltip id="toolTipComprar" for="comprar" value="Comprar" position="top" />
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>

@@ -16,28 +16,23 @@
 		<p:outputPanel id="menuPanel" layout="block">
 				<p:menu autoSubmenuDisplay="true" style="width:100%;height:100%;border:none;font-size:medium;padding:0px;"
 					ajax="true">
-					<p:submenu label="Cadastros" icon="ui-icon-folder-open">
+					<p:submenu label="Cadastros" icon="ui-icon-folder-open" rendered="#{indexBean.usuarioLogado.grupo.id eq '1'}">
 						<p:menuitem value="Cliente" action="/views/formCliente.xhtml?faces-redirect=true"/>
 						<p:menuitem value="Usuario" action="/views/formUsuario.xhtml?faces-redirect=true"/>
 						<p:menuitem value="Grupo" action="/views/formGrupo.xhtml?faces-redirect=true"/>
 						<p:menuitem value="Alimento" action="/views/formAlimento.xhtml?faces-redirect=true"/>
-						<p:menuitem value="Marmita" action="/views/formMarmita.xhtml?faces-redirect=true"/>
 					</p:submenu>
-					<p:submenu label="Listas" icon="ui-icon-folder-open">
+					<p:submenu label="Listas" icon="ui-icon-folder-open" rendered="#{indexBean.usuarioLogado.grupo.id eq '1'}">
 						<p:menuitem value="Clientes" action="/views/listCliente.xhtml?faces-redirect=true"/>
 						<p:menuitem value="Usuarios" action="/views/listUsuario.xhtml?faces-redirect=true"/>
 						<p:menuitem value="Grupos" action="/views/listGrupos.xhtml?faces-redirect=true"/>
+						<p:menuitem value="Alimentos" action="/views/listAlimentos.xhtml?faces-redirect=true"/>
 						<p:menuitem value="Marmitas" action="/views/listMarmitas.xhtml?faces-redirect=true"/>
 					</p:submenu>
 					<p:submenu label="Acoes" icon="ui-icon-folder-open">
-						<p:menuitem value="Comprar"
-							action="/views/page3.xhtml" />
-						<p:menuitem value="Montar Marmita" 
-							action="/views/page4.xhtml" />
-						<p:menuitem value="Minhas Marmitas" 
-							action="/views/page4.xhtml" />
-						<p:menuitem value="Minhas Compras" 
-							action="/views/page4.xhtml" />
+						<p:menuitem value="Comprar Marmita" action="/views/montarMarmita.xhtml?faces-redirect=true" />
+						<p:menuitem value="Minhas Marmitas" action="/views/minhasMarmitas.xhtml?faces-redirect=true" />
+						<p:menuitem value="Minhas Compras" 	action="/views/minhasCompras.xhtml?faces-redirect=true" />
 					</p:submenu>
 				</p:menu>
 		</p:outputPanel>

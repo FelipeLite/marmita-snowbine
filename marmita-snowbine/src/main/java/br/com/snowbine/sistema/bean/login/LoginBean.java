@@ -71,6 +71,16 @@ public class LoginBean extends BaseBeanForm<Usuario,UsuarioDao> implements Seria
 				//Encontra o usuario e compara a senha
 				Usuario usuarioEncontrado = this.getDao().consultarPorParametros("t.login = '" + login + "'").get(0);
 				
+				//Verifica se o usuário não está inativo
+				if(!usuarioEncontrado.isAtivo())
+				{
+					FacesMessage mensagem = new FacesMessage("Usuário inativo!");
+					mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
+					context.addMessage(null, mensagem);	
+					
+					return false;
+				}
+				
 				if(!StringUtils.criptografarSenha(senha).equals(usuarioEncontrado.getSenha()))
 				{
 					FacesMessage mensagem = new FacesMessage("Usuário ou senha incorretos!");

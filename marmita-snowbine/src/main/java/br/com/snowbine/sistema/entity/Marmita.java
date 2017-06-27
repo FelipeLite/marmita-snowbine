@@ -35,14 +35,14 @@ public class Marmita implements Serializable, BaseEntity
 	private Double preco;
 	
 	@Column(name = "peso", nullable = false)
-	private Integer peso;
+	private Double peso;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", nullable = true)
 	private Cliente cliente;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="item_marmita", joinColumns = {@JoinColumn(name = "id_alimento")}, inverseJoinColumns = {@JoinColumn(name = "id_marmita")})
+	@JoinTable(name="item_marmita", joinColumns = {@JoinColumn(name = "id_marmita")}, inverseJoinColumns = {@JoinColumn(name = "id_alimento")})
 	private Set<Alimento> alimentos = new HashSet<Alimento>(0);
 	
 	public Integer getId()
@@ -75,12 +75,12 @@ public class Marmita implements Serializable, BaseEntity
 		this.preco = preco;
 	}
 
-	public Integer getPeso()
+	public Double getPeso()
 	{
 		return peso;
 	}
 
-	public void setPeso(Integer peso)
+	public void setPeso(Double peso)
 	{
 		this.peso = peso;
 	}

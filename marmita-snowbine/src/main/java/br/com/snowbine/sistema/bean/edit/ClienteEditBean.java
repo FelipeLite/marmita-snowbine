@@ -9,7 +9,6 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 import br.com.snowbine.base.bean.edit.BaseBeanEdit;
-import br.com.snowbine.base.bean.form.BaseBeanForm;
 import br.com.snowbine.sistema.dao.ClienteDao;
 import br.com.snowbine.sistema.entity.Cliente;
 import br.com.snowbine.sistema.entity.Endereco;
@@ -63,8 +62,8 @@ public class ClienteEditBean extends BaseBeanEdit<Cliente, ClienteDao> implement
 
 	public String cadastrarCliente()
 	{
+		System.out.println(this.getEntidade().getSobrenome());
 		this.getEntidade().setEndereco(endereco);
-
 		super.cadastrar();
 
 		return "";

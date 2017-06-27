@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.snowbine.base.entity.BaseEntity;
 
@@ -29,6 +30,24 @@ public class Alimento implements Serializable, BaseEntity
 
 	@Column(name = "preco_kg", nullable = false)
 	private Double precoKg;
+	
+	@Transient
+	private Double quantidade;
+	
+	public Double getQuantidade()
+	{
+		return quantidade;
+	}
+
+	public void setQuantidade(Double quantidade)
+	{
+		this.quantidade = quantidade;
+	}
+
+	public static long getSerialversionuid()
+	{
+		return serialVersionUID;
+	}
 
 	public Integer getId()
 	{

@@ -21,21 +21,17 @@
 				<p:inputText id="email" value="#{usuarioFormBean.entidade.email}" />
 
 				<p:outputLabel for="grupos" value="Grupo:" />
-				<p:selectOneMenu id="grupos" required="true" requiredMessage="Grupo é obrigatório"
-					value="#{usuarioFormBean.entidade.grupo}">
+				<p:selectOneMenu id="grupos" required="true" requiredMessage="Grupo é obrigatório"	value="#{usuarioFormBean.entidade.grupo}">
 					<f:converter converterId="generic" />
 					<f:selectItem itemLabel="Selecione um Grupo: " itemValue="" />
-					<f:selectItems value="#{grupoListBean.listaEntidade}" var="grupo"
-						itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
+					<f:selectItems value="#{grupoListBean.listaEntidade}" var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel for="cliente" value="Cliente:" required="true" requiredMessage="Cliente é obrigatório"/>
-				<p:selectOneMenu id="cliente"
-					value="#{usuarioFormBean.entidade.cliente}">
+				<p:selectOneMenu id="cliente" value="#{usuarioFormBean.entidade.cliente}">
 					<f:converter converterId="generic" />
 					<f:selectItem itemLabel="Selecione um cliente: " itemValue="" />
-					<f:selectItems value="#{clienteListBean.listaEntidade}"
-						var="cliente" itemLabel="#{cliente.nome}" itemValue="#{cliente}" />
+					<f:selectItems value="#{clienteListBean.listaEntidade}"	var="cliente" itemLabel="#{cliente.nome.concat(' ').concat(cliente.sobrenome)}"	 itemValue="#{cliente}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel for="imagem-perfil" value="Imagem de perfil:" />

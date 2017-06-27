@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.snowbine.sistema.entity.Usuario;
+
 @WebFilter(servletNames ={ "Faces Servlet" })
 public class ControleDeAcesso implements Filter
 {
@@ -25,8 +27,18 @@ public class ControleDeAcesso implements Filter
 
 		if ((session.getAttribute("usuarioLogado") != null) || (req.getRequestURI().endsWith("login.xhtml")) || (req.getRequestURI().contains("javax.faces.resource/")) || req.getRequestURI().endsWith("marmita-snowbine/") || req.getRequestURI().endsWith("criar-conta.xhtml"))
 		{
+			if(session.getAttribute("usuarioLogado") != null)
+			{
+				Usuario u = (Usuario)session.getAttribute("usuarioLogado");
+				
+				//Significa que é cliente
+				if((req.getRequestURI().contains("form") || req.getRequestURI().contains("list") || req.getRequestURI().contains("dialog")) && u.getGrupo().getId() == 2)
+				{
+					redireciona("/marmita-snowbine/", response);
+				}
+			}
 			chain.doFilter(request, response);
-		}
+		}	
 
 		else
 		{

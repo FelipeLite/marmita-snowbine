@@ -15,14 +15,17 @@
 		   		<h:outputText value="#{alimentos.categoria}"/>
 		 	</p:column>    
 		 	<p:column headerText="Preço" value="#{alimentos.precoKg} " sortBy="#{alimentos.precoKg}">
-		 		<h:outputText value="#{alimentos.precoKg}"/>
+		 		<h:outputText value="#{alimentos.precoKg}">
+		 			<f:convertNumber type="currency" currencySymbol="$" locale="pt_BR"/>
+		 		</h:outputText>
 		 	</p:column>
 		 	<p:column headerText="Ações">
-				<p:commandButton icon="ui-icon-pencil" ajax="true" title="editar" onclick="PF('myDialog').show()" actionListener="#{navigationBean.openDialog}"/>
+				<p:commandButton icon="ui-icon-pencil" ajax="true" title="editar" onclick="PF('myDialog').show()" actionListener="#{navigationBean.openDialog('Alimento', alimentos.id)}"/>
 				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{alimentoListBean.excluir}">
 					<f:setPropertyActionListener value="#{alimentos}" target="#{alimentoListBean.entidade}"/>
 				</p:commandButton>
 		 	</p:column>    
 		</p:dataTable>
+		<p:commandButton icon="ui-icon-arrowrefresh-1-s" title="Atualizar" process="@this" update="@all" action="#{alimentoListBean.listar}" widgetVar="refreshButton" />
 	</ui:define>
 </ui:composition>	

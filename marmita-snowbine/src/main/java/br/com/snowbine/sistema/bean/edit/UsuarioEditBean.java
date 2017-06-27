@@ -3,8 +3,8 @@ package br.com.snowbine.sistema.bean.edit;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +17,7 @@ import br.com.snowbine.sistema.util.StringUtils;
 import br.com.snowbine.sistema.util.UploadUtils;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class UsuarioEditBean extends BaseBeanEdit<Usuario,UsuarioDao> implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -40,6 +40,11 @@ public class UsuarioEditBean extends BaseBeanEdit<Usuario,UsuarioDao> implements
 			this.getEntidade().setSrcImagemPerfil(srcImage);
 		}
 
+		super.cadastrar();
+	}
+	
+	public UsuarioEditBean()
+	{
 	}
 	
 	@PostConstruct

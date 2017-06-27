@@ -9,25 +9,17 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 import br.com.snowbine.base.bean.edit.BaseBeanEdit;
-import br.com.snowbine.sistema.dao.GrupoDao;
-import br.com.snowbine.sistema.entity.Grupo;
+import br.com.snowbine.sistema.dao.AlimentoDao;
+import br.com.snowbine.sistema.entity.Alimento;
+import br.com.snowbine.sistema.entity.Endereco;
 
 @Named
 @ViewScoped
-public class GrupoEditBean extends BaseBeanEdit<Grupo, GrupoDao> implements Serializable
+public class AlimentoEditBean extends BaseBeanEdit<Alimento, AlimentoDao> implements Serializable
 {
+
 	private static final long serialVersionUID = 1L;
-	
-	public GrupoEditBean()
-	{
-	}
-	
-	@Override
-	public void cadastrar()
-	{
-		super.cadastrar();
-	}
-	
+
 	@PostConstruct
 	public void init()
 	{
@@ -35,6 +27,7 @@ public class GrupoEditBean extends BaseBeanEdit<Grupo, GrupoDao> implements Seri
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 		
 		Integer idEntidade = Integer.parseInt((String) session.getAttribute("idEntidade"));
-		this.setEntidade(this.consultarPorId(idEntidade));		
+		
+		this.setEntidade(this.consultarPorId(idEntidade));
 	}
 }

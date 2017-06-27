@@ -32,6 +32,10 @@ public class UsuarioFormBean extends BaseBeanForm<Usuario,UsuarioDao> implements
 	{
 		this.getEntidade().setSenha(StringUtils.criptografarSenha(this.getEntidade().getSenha()));
 		
+		if(this.srcImage.equals("") || this.srcImage == null)
+		{
+			srcImage = "/images/profile/default-profile.jpg";
+		}
 		this.getEntidade().setSrcImagemPerfil(srcImage);
 
 		return super.cadastrar(entidade);
