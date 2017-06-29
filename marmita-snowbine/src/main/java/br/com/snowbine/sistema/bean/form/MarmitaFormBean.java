@@ -126,9 +126,6 @@ public class MarmitaFormBean extends BaseBeanForm<Marmita, MarmitaDao> implement
 	
 	public String comprarMarmita()
 	{
-		//Persiste a marmita
-		this.cadastrar("Marmita");
-		
 		//Como já vái montar e comprar, será basicamente uma compra débito
 		Date dataAtual = new Date();
 		
@@ -139,12 +136,15 @@ public class MarmitaFormBean extends BaseBeanForm<Marmita, MarmitaDao> implement
 		v.setDataCriacao(dataAtual);
 		v.setDataPagamento(dataAtual);
 		v.setDataVencimento(dataAtual);
-		v.setValor(this.getEntidade().getPreco());
+		v.setValor(this.getPreco());
 		v.setCliente(this.getUsuarioAutenticado().getCliente());
-		v.setValorPago(this.getEntidade().getPreco());
+		v.setValorPago(this.getEntidade().getPreco()); 	 	
 		
 		//Adiciona a marmita na venda
 		v.getMarmitas().add(this.getEntidade());
+		
+		//Persiste a marmita
+		this.cadastrar("Marmita");
 		
 		try
 		{

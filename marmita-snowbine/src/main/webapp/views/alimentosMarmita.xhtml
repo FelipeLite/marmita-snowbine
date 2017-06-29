@@ -1,0 +1,24 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateDialog.xhtml">
+
+	<ui:define name="content">
+		<p:dataTable id="dataTable" var="alimentos" value="#{alimentosMarmitaViewBean.alimentos}" border="1" cellspacing="0" cellpadding="2" paginator="true" rows="15" paginatorPosition="bottom" >
+			<p:column headerText="Nome" value="#{alimentos.nome}" sortBy="#{alimentos.nome}">
+		 		<h:outputText value="#{alimentos.nome}"/>
+		 	</p:column>
+			<p:column headerText="Categoria" value="#{alimentos.categoria}" sortBy="#{alimentos.categoria}">
+		   		<h:outputText value="#{alimentos.categoria}"/>
+		 	</p:column>    
+		 	<p:column headerText="Preço" value="#{alimentos.precoKg} " sortBy="#{alimentos.precoKg}">
+		 		<h:outputText value="#{alimentos.precoKg}">
+		 			<f:convertNumber type="currency" currencySymbol="$" locale="pt_BR"/>
+		 		</h:outputText>
+		 	</p:column>    
+		</p:dataTable>
+	</ui:define>
+ </ui:composition>

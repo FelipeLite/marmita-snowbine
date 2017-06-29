@@ -14,15 +14,14 @@
 			<p:column headerText="Peso" value="#{marmitas.peso}" sortBy="#{marmitas.peso}">
 		   		<h:outputText value="#{marmitas.peso}"/>
 		 	</p:column>    
-		 	<p:column headerText="Preço" value="#{marmitas.precoKg} " sortBy="#{marmitas.precoKg}">
-		 		<h:outputText value="#{marmitas.precoKg}"/>
+		 	<p:column headerText="Preço" value="#{marmitas.preco} " sortBy="#{marmitas.preco}">
+		 		<h:outputText value="#{marmitas.preco}">
+		 			<f:convertNumber type="currency" currencySymbol="$" locale="pt_BR"/>
+		 		</h:outputText>
 		 	</p:column>
-		 	<p:column headerText="Ações">
-				<p:commandButton icon="ui-icon-pencil" ajax="true" title="editar" onclick="PF('myDialog').show()" actionListener="#{navigationBean.openDialog}"/>
-				<p:commandButton icon="ui-icon-trash" title="excluir" process="@this" update="@all" action="#{marmitaListBean.excluir}">
-					<f:setPropertyActionListener value="#{marmitas}" target="#{marmitaListBean.entidade}"/>
-				</p:commandButton>
-		 	</p:column>    
+		 	<p:column headerText="Cliente" value="#{marmitas.cliente.nome}" sortBy="#{marmitas.cliente.nome}">
+		 		<h:outputText value="#{marmitas.cliente.nome}"/>
+		 	</p:column>
 		</p:dataTable>
 	</ui:define>
 </ui:composition>	

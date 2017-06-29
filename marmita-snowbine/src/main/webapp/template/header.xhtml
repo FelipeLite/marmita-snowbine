@@ -28,8 +28,8 @@
 					
 				<h:form>
 					<p:menuButton id="btn-info" icon="ui-icon-info"	style="margin-top:5px; width:20px; height:20px; position:relative; top:13px; right:20px;">
-						<p:menuitem value="Meu perfil" icon="ui-icon-key" action="/views/meuPerfil.xhtml" />
-						<p:menuitem value="Meus pedidos" icon="ui-icon-cart" action="/views/minhasCompras.xhtml"/>
+						<p:menuitem value="Meu perfil" icon="ui-icon-key" action="/views/meuPerfil.xhtml?faces-redirect=true" />
+						<p:menuitem value="Meus pedidos" icon="ui-icon-cart" action="/views/minhasCompras.xhtml?faces-redirect=true"/>
 						<p:separator />
 						<p:menuitem value="Sair" icon="ui-icon-close" action="#{loginBean.logout}" ajax="false"/>
 					</p:menuButton>

@@ -94,6 +94,24 @@ public class BaseBeanLista<T extends Serializable, D extends GenericDao<T>>
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<T> listarPorParametros(String parametros)
+	{
+		try
+		{
+			Method consultarPorParametros = dao.getClass().getMethod("consultarPorParametros", String.class);
+			this.setListaEntidade((List<T>) consultarPorParametros.invoke(dao, parametros));
+			
+			return this.getListaEntidade();
+		} 
+		
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public String excluir()
 	{
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -118,7 +136,6 @@ public class BaseBeanLista<T extends Serializable, D extends GenericDao<T>>
 			return null;
 
 		}
-		
 	}
 
 	public void setListaEntidade(List<T> lista)

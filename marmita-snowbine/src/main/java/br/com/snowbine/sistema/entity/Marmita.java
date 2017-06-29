@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 import br.com.snowbine.base.entity.BaseEntity;
 
 @Entity
@@ -42,6 +44,7 @@ public class Marmita implements Serializable, BaseEntity
 	private Cliente cliente;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	@JoinTable(name="item_marmita", joinColumns = {@JoinColumn(name = "id_marmita")}, inverseJoinColumns = {@JoinColumn(name = "id_alimento")})
 	private Set<Alimento> alimentos = new HashSet<Alimento>(0);
 	

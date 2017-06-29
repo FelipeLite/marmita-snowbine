@@ -1,0 +1,29 @@
+<ui:composition
+	 xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/template/template.xhtml">
+	
+	<ui:define name="content">
+	 	<p:dataTable id ="dataTable" var="vendas" value="#{vendaListBean.listaEntidade}" border="1" cellspacing="0" cellpadding="2" paginator="true" rows="15" paginatorPosition="bottom" >
+	 		<f:facet name="header">
+            		Minhas Compras
+        		</f:facet>
+	 		<p:column headerText="Id" value="#{vendas.id}" sortBy="#{vendas.id}">
+		 		<h:outputText value="#{vendas.id}"/>
+		 	</p:column>
+			<p:column headerText="Data da compra" value="#{vendas.dataCriacao}" sortBy="#{vendas.dataCriacao}">
+		 		<h:outputText value="#{vendas.dataCriacao}">
+		 			  <f:convertDateTime pattern="dd-MM-yyyy" />
+		 		</h:outputText>
+		 	</p:column>
+		 	<p:column headerText="Valor" value="#{vendas.valor}" sortBy="#{vendas.valor}">
+		 		<h:outputText value="#{vendas.valor}">
+		 			<f:convertNumber type="currency" currencySymbol="$" locale="pt_BR"/>
+		 		</h:outputText>
+		 	</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>	
